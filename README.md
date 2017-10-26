@@ -47,4 +47,4 @@ If you're annoyed by the __pycache__ files
 find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
 ```
 
-Feel free to contact me for questions :) tk2@illinois.edu
+Feel free to contact me for questions :) 
