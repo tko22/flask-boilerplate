@@ -1,17 +1,9 @@
-from flask import Flask 
- 
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
 app = Flask(__name__)
-
-POSTGRES = {
-    'user': 'nbb',
-    'pw': 'password',
-    'db': 'nbb_db',
-    'host': 'localhost',
-    'port': '5432',
-}
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
-%(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
+app.config.from_object('config')
+db = SQLAlchemy(app)
 
 # import and register blueprints
 from api.views import main
