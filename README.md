@@ -26,12 +26,17 @@ $ create user nbb with password 'password';
 $ create database nbb_db owner nbb encoding 'utf-8';
 ```
 
+
+## Run Development Server
 To run the server, make sure you are in the root directory:
 ```
 python app.py
 ```
 
-Also, if you're annoyed by the __pycache__ files 
+The API should be at http://127.0.0.1:5000/ for you to experience its beauty LOL 
+
+## MISC
+If you're annoyed by the __pycache__ files 
 ```
 find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
 ```
