@@ -36,6 +36,9 @@ python app.py
 The API should be at http://127.0.0.1:5000/ for you to experience its beauty LOL 
 
 ## MISC
+We will be using Flask (Blueprints)[http://flask.pocoo.org/docs/0.12/blueprints/] for easier collaborations in view controllers<br>
+
+
 If you're annoyed by the __pycache__ files 
 ```
 find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
