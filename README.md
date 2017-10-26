@@ -30,14 +30,16 @@ $ create database nbb_db owner nbb encoding 'utf-8';
 ## Run Development Server
 To run the server, make sure you are in the root directory:
 ```
-python app.py
+python run.py
 ```
 
 The API should be at http://127.0.0.1:5000/ for you to experience its beauty LOL 
 
-## MISC
-We will be using [Flask Blueprints](http://flask.pocoo.org/docs/0.12/blueprints/) for easier collaborations in view controllers<br>
+## Conventions
+- **Controllers**, which describe API endpoints will be defined under ``api/views/*``. We will be using [Flask Blueprints](http://flask.pocoo.org/docs/0.12/blueprints/) for easier collaborations in view controllers. Be sure to know how to use them. <br>
+- The **Database** Structure will be defined under ``api/models.py``
 
+## MISC
 
 If you're annoyed by the __pycache__ files 
 ```
