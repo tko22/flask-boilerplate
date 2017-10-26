@@ -37,7 +37,7 @@ The API should be at http://127.0.0.1:5000/ for you to experience its beauty LOL
 
 ## Conventions
 - **Controllers**, which describe API endpoints will be defined under ``api/views/*``. We will be using [Flask Blueprints](http://flask.pocoo.org/docs/0.12/blueprints/) for easier collaborations in view controllers. Be sure to know how to use them. <br>
-- The **Database** Structure will be defined under ``models.py``
+- The **Database** Structure will be defined under ``api/models.py``
 
 ## MISC
 
