@@ -14,8 +14,8 @@ If your developing with Windows, ¯\_(ツ)_/¯ <br>
 Always remember to be use the same virtual environement. This is a really good practice for any python development. <br>
 First, install virtualenv, create and activate the environment called **venv**, and install the python package dependencies:
 ```
-$ pip install virtualenv
-$ virtualenv venv
+$ pip3 install virtualenv
+$ virtualenv -p python3 venv
 $ source venv/bin/activate
 $ pip install -r requirements.txt
 ```
