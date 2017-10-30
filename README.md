@@ -2,7 +2,7 @@
 
 Restful API using Flask <br>
 Dependencies:
-- Python 3.*
+- Python 3.x
 - pip 9.0
 - PostgreSQL – for MacOS, [postgresapp](http://postgresapp.com/) is a very simple one. <br>
 
