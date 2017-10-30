@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-
+# this doesn't work 
 class PointsOfInterest(db.Model):
     """Points of Interest"""
     __tablename__ = "points_of_interests"
