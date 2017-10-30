@@ -4,11 +4,12 @@ Restful API using Flask <br>
 Dependencies:
 - Python 3.*
 - pip 9.0
+- PostgreSQL – for MacOS, [postgresapp](http://postgresapp.com/) is a very simple one. <br>
 
 ## Setup 
-If your developing with Windows, ¯\_(ツ)_/¯
-Install PostgreSQL–for MacOS, [postgresapp](http://postgresapp.com/) is a very simple one.
-Always remember to be use the same virtual environement. This is a really good practice for any python development. First, install virtualenv, create and activate the environment called **venv**, and install the python package dependencies:
+If your developing with Windows, ¯\_(ツ)_/¯ <br>
+Always remember to be use the same virtual environement. This is a really good practice for any python development. <br>
+First, install virtualenv, create and activate the environment called **venv**, and install the python package dependencies:
 ```
 $ pip install virtualenv
 $ virtualenv venv
@@ -19,11 +20,12 @@ To deactivate when you're using it:
 ```
 $ deactivate venv
 ```
-After installing Postgres, in your CLI create a user and database:
+After installing Postgres, in your CLI create a user and database and grant privileges:
 ```
 $ psql
 $ create user nbb with password 'password';
 $ create database nbb_db owner nbb encoding 'utf-8';
+GRANT ALL PRIVILEGES ON DATABASE nbb_db TO nbb;
 ```
 
 
@@ -46,4 +48,4 @@ If you're annoyed by the __pycache__ files
 find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
 ```
 
-Feel free to contact me for questions :) tk2@illinois.edu
+Feel free to contact me for questions :) 
