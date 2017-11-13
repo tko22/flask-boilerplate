@@ -2,7 +2,7 @@
 
 Restful API using Flask <br>
 Dependencies:
-- Python 3.x
+- Python 3.6.x
 - pip 9.0
 - PostgreSQL 
 
@@ -25,7 +25,7 @@ $ psql -h localhost
 Always remember to use the same virtual environement!!!! This is a good practice for any python development. <br>
 First, install virtualenv, create and activate the environment called **venv**, and install the python package dependencies:
 ```bash
-pip3 install virtualenv
+$ pip3 install virtualenv
 $ virtualenv -p python3 venv
 $ source venv/bin/activate
 $ pip install -r requirements.txt
@@ -42,11 +42,32 @@ $ psql
 # GRANT ALL PRIVILEGES ON DATABASE test_db TO testuser;
 ```
 
-
 ## Run Development Server
 To run the server, make sure you are in the root directory:
 ```
 python run.py
 ```
-
 The API should be at http://127.0.0.1:5000/ for you to experience its beauty
+
+## Database Schema Changes
+The Database Schema is described in ```models.py```. For any changes you make, you need to let everyone know about it. 
+You will need to intialize the configurations for migrations once:
+```
+$ python manage.py db init
+```
+Everytime you change the schema, create migration files for your changes:
+```
+$ python manage.py db migrate 
+```
+This will be reflected in ```/migrations```. Don't worry about what is added, but you must add and commit those files for everyone else to use. Then, upgrade the database and let everyone know to do to.
+```
+$ python manage.py db upgrade
+```
+
+## MISC
+If you're annoyed by the __pycache__ files 
+```
+find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
+```
+
+Feel free to contact me for questions :) 
