@@ -7,3 +7,7 @@ MarkupSafe==1.0
 psycopg2==2.7.3.2
 SQLAlchemy==1.1.14
 Werkzeug==0.12.2
+Flask-Migrate==2.1.1
+gunicorn==19.7.1
+urllib3==1.22
+alembic==0.9.6
