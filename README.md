@@ -48,5 +48,22 @@ To run the server, make sure you are in the root directory:
 ```
 python run.py
 ```
-
 The API should be at http://127.0.0.1:5000/ for you to experience its beauty
+
+## Database Schema Changes
+The Database Schema is described in ```models.py```. For any changes you make, you need to let everyone know about it. First, create migration files for your changes:
+```
+$ python manage.py db migrate 
+```
+This will be reflected in ```/migrations```. Don't worry about what is added, but you must add and commit those files for everyone else to use. Then, upgrade the database and let everyone know to do to.
+```
+$ python manage.py db upgrade
+```
+
+## MISC
+If you're annoyed by the __pycache__ files 
+```
+find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
+```
+
+Feel free to contact me for questions :) 
