@@ -2,7 +2,7 @@
 
 Restful API using Flask <br>
 Dependencies:
-- Python 3.x
+- Python 3.6.x
 - pip 9.0
 - PostgreSQL 
 
