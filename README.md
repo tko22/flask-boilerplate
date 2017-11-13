@@ -34,12 +34,12 @@ To deactivate when you're using it:
 ```
 $ deactivate venv
 ```
-After installing Postgres, in your CLI create a user and database and grant privileges:
+After installing Postgres, in your CLI create a user named "testuser" and database and grant privileges:
 ```
 $ psql
-# create user nbb with password 'password';
-# create database nbb_db owner nbb encoding 'utf-8';
-# GRANT ALL PRIVILEGES ON DATABASE nbb_db TO nbb;
+# create user testuser with password 'password';
+# create database test_db owner nbb encoding 'utf-8';
+# GRANT ALL PRIVILEGES ON DATABASE test_db TO testuser;
 ```
 
 
