@@ -1,9 +1,10 @@
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
-from api import api, db
+from api import db, app
+from api.models import Person
 
-manager = Manager(api)
-migrate = Migrate(api, db)
+manager = Manager(app)
+migrate = Migrate(app, db)
 
 manager.add_command('db', MigrateCommand)
 

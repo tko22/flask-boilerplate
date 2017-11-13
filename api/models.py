@@ -4,10 +4,9 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-# this doesn't work 
-class PointsOfInterest(db.Model):
-    """Points of Interest"""
-    __tablename__ = "points_of_interests"
+class Person(db.Model):
+    """Person"""
+    __tablename__ = "person"
 
     id = db.Column(db.Integer, unique=True, primary_key=True)
     name = db.Column(db.String, nullable=False)
@@ -16,4 +15,4 @@ class PointsOfInterest(db.Model):
         self.name = name
 
     def __repr__(self):
-        return '<name {}'.format(self.name)
+        return '<name {}>'.format(self.name)
