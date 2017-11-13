@@ -25,7 +25,7 @@ $ psql -h localhost
 Always remember to use the same virtual environement!!!! This is a good practice for any python development. <br>
 First, install virtualenv, create and activate the environment called **venv**, and install the python package dependencies:
 ```bash
-pip3 install virtualenv
+$ pip3 install virtualenv
 $ virtualenv -p python3 venv
 $ source venv/bin/activate
 $ pip install -r requirements.txt
