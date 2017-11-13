@@ -42,7 +42,6 @@ $ psql
 # GRANT ALL PRIVILEGES ON DATABASE test_db TO testuser;
 ```
 
-
 ## Run Development Server
 To run the server, make sure you are in the root directory:
 ```
@@ -51,7 +50,12 @@ python run.py
 The API should be at http://127.0.0.1:5000/ for you to experience its beauty
 
 ## Database Schema Changes
-The Database Schema is described in ```models.py```. For any changes you make, you need to let everyone know about it. First, create migration files for your changes:
+The Database Schema is described in ```models.py```. For any changes you make, you need to let everyone know about it. 
+You will need to intialize the configurations for migrations once:
+```
+$ python manage.py db init
+```
+Everytime you change the schema, create migration files for your changes:
 ```
 $ python manage.py db migrate 
 ```
