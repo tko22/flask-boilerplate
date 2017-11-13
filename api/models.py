@@ -1,8 +1,8 @@
-from app import db
+from api import db
 from sqlalchemy.dialects.postgresql import JSON
 from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy()
+# db = SQLAlchemy()
 
 class Person(db.Model):
     """Person"""
