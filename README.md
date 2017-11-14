@@ -36,7 +36,7 @@ $ deactivate venv
 ```
 After installing Postgres, in your CLI create a user named "testuser" and database and grant privileges:
 ```
-$ psql
+# psql
 # create user testuser with password 'password';
 # create database test_db owner nbb encoding 'utf-8';
 # GRANT ALL PRIVILEGES ON DATABASE test_db TO testuser;
