@@ -1,6 +1,6 @@
 # Flask Boilerplate
 
-Restful API using Flask <br>
+Restful API Boilerplate using Flask <br>
 Dependencies:
 - Python 3.6.x
 - pip 9.0
@@ -41,6 +41,8 @@ After installing Postgres, in your CLI create a user named "testuser" and databa
 # create database test_db owner nbb encoding 'utf-8';
 # GRANT ALL PRIVILEGES ON DATABASE test_db TO testuser;
 ```
+## Directory Structure
+In a way, this boilerplate represents a Django app structure.  
 
 ## Run Development Server
 To run the server, make sure you are in the root directory:
