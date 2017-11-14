@@ -6,12 +6,13 @@ from flask import jsonify
 
 mod = Blueprint('main', __name__)
 
+# function that is called when you visit /
 @app.route('/')
 def index():
     return '<h1>Hello World!</h1>'
 
-# this doesnt work 
+# function that is called when you visit /persons
 @app.route('/persons')
 def name():
-    return jsonify(Person.query.all())
+    return jsonify(Person.query.all()) # returns all elements in Person
 

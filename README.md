@@ -63,7 +63,26 @@ This will be reflected in ```/migrations```. Don't worry about what is added, bu
 ```
 $ python manage.py db upgrade
 ```
-
+## Adding Entries into the database 
+Eventually, you would want to make POST requests to certain endpoints that would add entries to the database. You can add dummy data through the python CLI. Make sure you're in the right virtualenv. 
+```
+$ python
+```
+You will be at the head directory. Import the Objects you need from ```models.py``` and your database
+```
+>>> from api.models import Person
+>>> from api import db
+```
+Then, make a new Person Object and add it to the database.
+```
+>>> p = Person(name="Tim")
+>>> db.session.add(p)
+```
+Once you add it, you need save(commit) the change
+```
+>>> db.session.commit()
+```
+Note: this example is specific to what is initially described in ```models.py```
 ## MISC
 If you're annoyed by the __pycache__ files 
 ```
