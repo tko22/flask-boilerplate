@@ -69,17 +69,17 @@ Eventually, you would want to make POST requests to certain endpoints that would
 $ python
 ```
 You will be at the head directory. Import the Objects you need from ```models.py``` and your database
-```
+```python
 >>> from api.models import Person
 >>> from api import db
 ```
 Then, make a new Person Object and add it to the database.
-```
+```python
 >>> p = Person(name="Tim")
 >>> db.session.add(p)
 ```
 Once you add it, you need save(commit) the change
-```
+```python
 >>> db.session.commit()
 ```
 Note: this example is specific to what is initially described in ```models.py```
