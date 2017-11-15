@@ -1,6 +1,6 @@
 # Flask Boilerplate
 
-Restful API using Flask <br>
+Restful API Boilerplate using Flask <br>
 Dependencies:
 - Python 3.6.x
 - pip 9.0
@@ -41,11 +41,13 @@ After installing Postgres, in your CLI create a user named "testuser" and databa
 # create database test_db owner nbb encoding 'utf-8';
 # GRANT ALL PRIVILEGES ON DATABASE test_db TO testuser;
 ```
+## Directory Structure
+In a way, this boilerplate represents a Django app structure.  
 
 ## Run Development Server
 To run the server, make sure you are in the root directory:
 ```
-python run.py
+(venv)$ python manage.py runserver
 ```
 The API should be at http://127.0.0.1:5000/ for you to experience its beauty
 
@@ -53,40 +55,40 @@ The API should be at http://127.0.0.1:5000/ for you to experience its beauty
 The Database Schema is described in ```models.py```. For any changes you make, you need to let everyone know about it. 
 You will need to intialize the configurations for migrations once:
 ```
-$ python manage.py db init
+(venv)$ python manage.py db init
 ```
 Everytime you change the schema, create migration files for your changes:
 ```
-$ python manage.py db migrate 
+(venv)$ python manage.py db migrate 
 ```
 This will be reflected in ```/migrations```. Don't worry about what is added, but you must add and commit those files for everyone else to use. Then, upgrade the database and let everyone know to do to.
 ```
-$ python manage.py db upgrade
+(venv)$ python manage.py db upgrade
 ```
 ## Adding Entries into the database 
 Eventually, you would want to make POST requests to certain endpoints that would add entries to the database. You can add dummy data through the python CLI. Make sure you're in the right virtualenv. 
 ```
-$ python
+(venv)$ python
 ```
 You will be at the head directory. Import the Objects you need from ```models.py``` and your database
-```
+```python
 >>> from api.models import Person
 >>> from api import db
 ```
 Then, make a new Person Object and add it to the database.
-```
+```python
 >>> p = Person(name="Tim")
 >>> db.session.add(p)
 ```
 Once you add it, you need save(commit) the change
-```
+```python
 >>> db.session.commit()
 ```
 Note: this example is specific to what is initially described in ```models.py```
 ## MISC
 If you're annoyed by the __pycache__ files 
 ```
-find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
+$ find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
 ```
 
 Feel free to contact me for questions :) 
