@@ -60,7 +60,7 @@ Note: this example is specific to what is initially described in ```models.py```
 # import Person and db
 >>> from api.models import Person
 >>> from api import db
-...
+
 # add a Person with name "Tim" and another with name "Tim2"– yes, I'm that narcissistic haha
 >>> person1 = Person(name="Tim")
 >>> person2 = Person(name="Tim2")
