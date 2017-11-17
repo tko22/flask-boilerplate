@@ -1,4 +1,4 @@
-# Flask Boiler Plate 
+# FlaskBoiler Plate 
 
 Boilerplate meant for building out simple REST APIs <br>
 Dependencies:
