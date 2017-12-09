@@ -46,7 +46,7 @@ $ psql
 ## Run Development Server
 To run the server, make sure you are in the root directory:
 ```
-(venv)$ python run.py
+(venv)$ python manage.py runserver
 ```
 
 The API should be at http://127.0.0.1:5000/ for you to experience its beauty LOL 
