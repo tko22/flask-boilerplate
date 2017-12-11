@@ -157,17 +157,12 @@ To double check whether you have the postgres add-on:
 $ heroku addons
 ```
 And you should get something with ```heroku-postgresql (postgresql-metric-75135)```<br>
-We will then connect the Heroku Postgres Database to the App in Heroku. Until I implement a better way to do this, we will have to comment out in config.py <br>
+To let Heroku know get the Production Configurations, we will have to set an environment variable ```FLASK_ENV``` to ```"prod"```. 
 ```
-SQLALCHEMY_DATABASE_URI = 'postgresql://nbb:password@127.0.0.1:5432/nbb_db'
+$ heroku config:set FLASK_ENV="prod"	
 ```
-and uncomment 
+Then push your latest changes to heroku: 
 ```
-SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
-``` 
-Then commit it and push it to heroku: 
-```
-$ git commit config.py -m "changing database uri for heroku deployment"
 $ git push heroku master
 ```
 After pushing your app to heroku, you need to migrate and update heroku postgres:
