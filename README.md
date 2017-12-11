@@ -138,6 +138,9 @@ $ psql
 # \connect nbb_db
 # DROP TABLE alembic_version;
 # \q
+# python manage.py db init
+# python manage.py db migrate
+# python manage.py db upgrade
 ```
 
 
@@ -178,6 +181,7 @@ A pretty neat command to go into the heroku postgres CLI is:
 ```
 $ heroku pg:psql
 ```
+Note: You are already inside your database! \n
 Finally, open up your live app by clicking the "Open App" button on the top-right corner of your Heroku dashboard!
 ## Git Flow 
 Before you start making changes, make sure you have the most recently updated version of `master`:
@@ -237,3 +241,4 @@ find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
 ```
 
 Feel free to contact me for questions :) 
+tk2@illinois.edu
