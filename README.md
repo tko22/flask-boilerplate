@@ -12,7 +12,7 @@ This Boilerplate meant for building out simple REST APIs meant to be deployed us
 * ```/api/models.py``` - Defines your database schema
 * ```/api/__init__.py``` - What is ran initially when you start your application
 #### Others
-* ```/migrations``` - Holds migration folders–doesn't exist until you ```python manage.py db init```
+* ```/migrations``` - Holds migration files–doesn't exist until you ```python manage.py db init```
 * ```config.py``` - Provides Configuration for the application. There are two configurations: one for development and one for production using Heroku. 
 * ```manage.py``` - Command line interface that allows you to perform common functions with a command
 * ```requirements.txt``` - A list of python package dependencies the application requires
