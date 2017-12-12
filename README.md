@@ -1,7 +1,7 @@
 # Flask Boilerplate 
 This Boilerplate meant for building out simple REST APIs meant to be deployed using Heroku. You can deploy it with anything else but instructions for that are not provided. Included are simple examples to help you get started. <br>
 
-## Docs
+### Docs
 * <a href='./docs/conventions.md'>Conventions</a>
 * <a href='./docs/database.md'>Database Interactions & Troubleshooting</a>
 * <a href='./docs/git_flow.md'>Heroku Deployment</a>
@@ -12,6 +12,7 @@ This Boilerplate meant for building out simple REST APIs meant to be deployed us
 * ```/api/models.py``` - Defines your database schema
 * ```/api/__init__.py``` - What is ran initially when you start your application
 #### Others
+* ```/migrations``` - Holds migration folders–doesn't exist until you ```python manage.py db init```
 * ```config.py``` - Provides Configuration for the application. There are two configurations: one for development and one for production using Heroku. 
 * ```manage.py``` - Command line interface that allows you to perform common functions with a command
 * ```requirements.txt``` - A list of python package dependencies the application requires
@@ -79,5 +80,5 @@ If you're annoyed by the __pycache__ files
 find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
 ```
 
-Feel free to contact me for questions :) 
+Feel free to contact me for questions :) <br>
 tk2@illinois.edu
