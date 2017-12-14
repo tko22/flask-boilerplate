@@ -4,7 +4,7 @@ This Boilerplate meant for building out simple REST APIs meant to be deployed us
 ### Docs
 * <a href='./docs/conventions.md'>Conventions</a>
 * <a href='./docs/database.md'>Database Interactions & Troubleshooting</a>
-* <a href='./docs/git_flow.md'>Heroku Deployment</a>
+* <a href='./docs/heroku.md'>Heroku Deployment</a>
 * <a href='./docs/git_flow.md'>Git flow</a>
 
 ### Repository Contents
@@ -79,6 +79,13 @@ If you're annoyed by the __pycache__ files
 ```
 find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
 ```
+### Additional Documentation
+* [Flask](http://flask.pocoo.org/) - Flask Documentation 
+* [Flask SQLAlchemy](http://flask-sqlalchemy.pocoo.org/2.3/) - the ORM for the database
+* [Heroku](https://devcenter.heroku.com/articles/getting-started-with-python#introduction) - Deployment using Heroku
+* [Learn Python](https://www.learnpython.org/) - Learning Python3
+* [Relational Databases](https://www.ntu.edu.sg/home/ehchua/programming/sql/Relational_Database_Design.html) - Designing a database schema
+* [REST API](http://www.restapitutorial.com/lessons/restquicktips.html) - tips on making an API Restful
 
 Feel free to contact me for questions :) <br>
 tk2@illinois.edu
