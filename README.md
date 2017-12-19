@@ -5,7 +5,6 @@ This Boilerplate meant for building out simple REST APIs meant to be deployed us
 <a href='./docs/conventions.md'>Conventions</a>
 <a href='./docs/database.md'>Database Interactions & Troubleshooting</a>
 <a href='./docs/git_flow.md'>Heroku Deployment</a>
-<a href='./docs/git_flow.md'>Git flow</a>
 
 ### Repository Contents
 * ```/api/views/``` - Holds files that define your endpoints
