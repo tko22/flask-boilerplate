@@ -4,13 +4,14 @@ This Boilerplate meant for building out simple REST APIs meant to be deployed us
 ## Docs
 <a href='./docs/conventions.md'>Conventions</a>
 <a href='./docs/database.md'>Database Interactions & Troubleshooting</a>
-<a href='./docs/git_flow.md'>Heroku Deployment</a>
+<a href='./docs/heroku.md'>Heroku Deployment</a>
 
 ### Repository Contents
 * ```/api/views/``` - Holds files that define your endpoints
 * ```/api/models.py``` - Defines your database schema
 * ```/api/__init__.py``` - What is ran initially when you start your application
 #### Others
+* ```/migrations``` - Holds migration files–doesn't exist until you ```python manage.py db init```
 * ```config.py``` - Provides Configuration for the application. There are two configurations: one for development and one for production using Heroku. 
 * ```manage.py``` - Command line interface that allows you to perform common functions with a command
 * ```requirements.txt``` - A list of python package dependencies the application requires
@@ -77,6 +78,13 @@ If you're annoyed by the __pycache__ files
 ```
 find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
 ```
+### Additional Documentation
+* [Flask](http://flask.pocoo.org/) - Flask Documentation 
+* [Flask SQLAlchemy](http://flask-sqlalchemy.pocoo.org/2.3/) - the ORM for the database
+* [Heroku](https://devcenter.heroku.com/articles/getting-started-with-python#introduction) - Deployment using Heroku
+* [Learn Python](https://www.learnpython.org/) - Learning Python3
+* [Relational Databases](https://www.ntu.edu.sg/home/ehchua/programming/sql/Relational_Database_Design.html) - Designing a database schema
+* [REST API](http://www.restapitutorial.com/lessons/restquicktips.html) - tips on making an API Restful
 
-Feel free to contact me for questions :) 
+Feel free to contact me for questions :) <br>
 tk2@illinois.edu

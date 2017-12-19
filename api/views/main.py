@@ -14,5 +14,5 @@ def index():
 # function that is called when you visit /persons
 @app.route('/persons')
 def name():
-    return jsonify(Person.query.all()) # returns all elements in Person
+    return jsonify({'Status':'Success','Data':Person.query.all()) # returns all elements in Person
 

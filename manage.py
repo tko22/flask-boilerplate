@@ -19,6 +19,12 @@ def runserver():
 def runworker():
     app.run(debug=False)
 
+@manager.command
+def test():
+    import unittest
+
+    tests = unittest.TestLoader().discover('tests')
+    unittest.TextTestRunner(verbosity=2).run(tests)
 
 @manager.command
 def recreate_db():
