@@ -2,9 +2,9 @@
 This Boilerplate meant for building out simple REST APIs meant to be deployed using Heroku. You can deploy it with anything else but instructions for that are not provided. Included are simple examples to help you get started. <br>
 
 ## Docs
-<a href='./docs/conventions.md'>Conventions</a>
-<a href='./docs/database.md'>Database Interactions & Troubleshooting</a>
-<a href='./docs/heroku.md'>Heroku Deployment</a>
+- <a href='./docs/conventions.md'>Conventions</a>
+- <a href='./docs/databases.md'>Database Interactions & Troubleshooting</a>
+- <a href='./docs/heroku.md'>Heroku Deployment</a>
 
 ### Repository Contents
 * ```/api/views/``` - Holds files that define your endpoints
