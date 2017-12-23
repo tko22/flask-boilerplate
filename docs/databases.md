@@ -1,10 +1,10 @@
 # Database Interactions
 ## SQLAlchemy Examples
 Here are some ways to use SQLAlchemy to query, add, and delete from your database. <br>
-Note: this example is specific to what is initially described in ```models.py```–A Table called Person with an attribute called "name"(String).
+Note: this example is specific to what is initially described in ```models.py```–A Table called Person with an attribute called "name"(String) and one-to-many relationship to the table Emails. Another Table called Email has an attribute called "email"(String) and a Foreign Key to Person. 
 ```python
 # import Person and db
->>> from api.models import Person
+>>> from api.models import Person, Email
 >>> from api import db
 
 # add a Person with name "Tim" and another with name "Tim2"– yes, I'm that narcissistic haha
@@ -36,12 +36,14 @@ Tim
 # If you had any Foreign Keys linked to Person, you must set make sure to define whether you want
 # it to cascade or SET NULL when you define your model
 
-# Relationships – say there was an Email Table with a foreign key in Email with "email"(String) attribute
-# that was linked to Person and Person had an attribute "emails = db.relationship('Email', backref='person')"
->>> email1 = Email(email="tim@gmail.com")
+# Relationships
+# In our current schema, we see that a Person has an attribute "emails".
+# This is represented by a python list, which would be initially empty
+>>> email1 = Email(email="tim@gmail.com") # create an Email
 >>> email2 = Email(email="tim.ko@gmail.com")
->>> p = Person.query.get(2)
->>> p.emails.append(email1)
+>>> p = Person.query.get(2) # query the person who has the email
+>>> p.emails.append(email1) # add the email to that person 
+# Note: You must add an Email object
 >>> p.emails.append(email2)
 >>> p.emails
 [<email tim@gmail.com>,<email tim.ko@gmail.com>]
@@ -53,7 +55,7 @@ Eventually, you would want to make POST requests to certain endpoints that would
 ```
 You will be at the head directory. Import the Objects you need from ```models.py``` and your database
 ```python
->>> from api.models import Person
+>>> from api.models import Person, Email
 >>> from api import db
 ```
 Then, make a new Person Object and add it to the database.
@@ -65,6 +67,7 @@ Once you add it, you need save(commit) the change
 ```python
 >>> db.session.commit()
 ```
+You can also write scripts to do this. Or you can also write scripts in the frontend, where you will make POST requests to your "adding resources" endpoint
 
 
 ## Database Schema Changes
@@ -88,4 +91,17 @@ $ psql
 $ python manage.py db init
 $ python manage.py db migrate
 $ python manage.py db upgrade
+```
+### Random errors
+Sometimes you might run into weird errors. Since you most likely will run into these errors in the beginning(when your schema keeps changing) and, thus, will not have important data inside your database, you can just delete the database and start all over.
+```
+$ psql
+# DROP DATABASE nbb_db;
+# create database nbb_db owner nbb encoding 'utf-8';
+# GRANT ALL PRIVILEGES ON DATABASE nbb_db TO nbb;
+# \q
+```
+Another way that might works is:
+```
+$ python manage.py recreate_db
 ```
