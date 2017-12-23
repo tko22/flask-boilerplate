@@ -58,14 +58,14 @@ To deactivate when you're using it:
 ```
 (venv)$ deactivate venv
 ```
-After installing Postgres, create a user(with name 'nbb' and password 'password') and a database called 'nbb_db' then grant privileges. We will do this in your CLI:
+After installing Postgres, create a user(with name 'testusr' and password 'password') and a database called 'testdb' then grant privileges. We will do this in your CLI:
 ```
 $ psql
-# create user nbb with password 'password';
-# create database nbb_db owner nbb encoding 'utf-8';
-# GRANT ALL PRIVILEGES ON DATABASE nbb_db TO nbb;
+# create user testusr with password 'password';
+# create database testdb owner testusr encoding 'utf-8';
+# GRANT ALL PRIVILEGES ON DATABASE testdb TO testusr;
 ```
-Note: Please replace the user name and password and database name to what you want in your own application.
+Note: Please replace the user name and password and database name to what you want in your own application. You must change those configurations in ```config.py``` and in ```.env```
 ## Running Development Server
 To run the server, make sure you are in the root directory:
 ```

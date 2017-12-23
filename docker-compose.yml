@@ -1,8 +1,19 @@
 version: '2.1'
-
 services:
-  flask-boilerplate:
-    image: flask-boilerplate
+  database:
+    restart: always
+    image: postgres
+    environment:
+      - POSTGRES_USER=testusr
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=testdb
+    volumes:
+      - ./postgres-data/postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  api:
+    restart: always
+    image: app
     build: .
     ports:
       - 5000:5000
@@ -10,8 +21,5 @@ services:
       - ./:/usr/src/app
     depends_on:
       - database
-  database:
-    image: postgres:9
-    env_file: .env
-    expose:
-      - 5432
+    command: ["python", "manage.py","runserver"]
+  

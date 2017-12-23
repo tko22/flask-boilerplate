@@ -85,7 +85,7 @@ If you are getting errors when you migrate, remove the migrations folder, go int
 ```
 $ rm -rf migrations/
 $ psql
-# \connect nbb_db
+# \connect testdb
 # DROP TABLE alembic_version;
 # \q
 $ python manage.py db init
@@ -96,9 +96,9 @@ $ python manage.py db upgrade
 Sometimes you might run into weird errors. Since you most likely will run into these errors in the beginning(when your schema keeps changing) and, thus, will not have important data inside your database, you can just delete the database and start all over.
 ```
 $ psql
-# DROP DATABASE nbb_db;
-# create database nbb_db owner nbb encoding 'utf-8';
-# GRANT ALL PRIVILEGES ON DATABASE nbb_db TO nbb;
+# DROP DATABASE testdb;
+# create database testdb owner testusr encoding 'utf-8';
+# GRANT ALL PRIVILEGES ON DATABASE testdb TO testusr;
 # \q
 ```
 Another way that might works is:

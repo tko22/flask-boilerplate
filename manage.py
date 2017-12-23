@@ -12,12 +12,13 @@ manager.add_command('db', MigrateCommand)
 
 @manager.command
 def runserver():
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
 
 
 @manager.command
 def runworker():
     app.run(debug=False)
+
 
 @manager.command
 def test():
@@ -25,6 +26,7 @@ def test():
 
     tests = unittest.TestLoader().discover('tests')
     unittest.TextTestRunner(verbosity=2).run(tests)
+
 
 @manager.command
 def recreate_db():
@@ -35,6 +37,7 @@ def recreate_db():
     db.drop_all()
     db.create_all()
     db.session.commit()
+
 
 if __name__ == '__main__':
     manager.run()
