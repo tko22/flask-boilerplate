@@ -1,5 +1,8 @@
 # Database Interactions
 This doc was written before Docker was implemented in. Check out the <a href="./docker.md">Docker doc<a> before looking through this. 
+## Caveats
+* If you are using Docker, always remember to be in the correct container before running these commands
+* If you are in the regular setup, always remember to be in your virtual environment
 ## SQLAlchemy Examples
 Here are some ways to use SQLAlchemy to query, add, and delete from your database. <br>
 Note: this example is specific to what is initially described in ```models.py```–A Table called Person with an attribute called "name"(String) and one-to-many relationship to the table Emails. Another Table called Email has an attribute called "email"(String) and a Foreign Key to Person. 
