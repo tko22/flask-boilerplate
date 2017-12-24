@@ -1,8 +1,8 @@
 version: '2.1'
 services:
-  database:
+  postgres:
     restart: always
-    image: postgres
+    image: postgres:9.6
     environment:
       - POSTGRES_USER=testusr
       - POSTGRES_PASSWORD=password
@@ -11,7 +11,7 @@ services:
       - ./postgres-data/postgres:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-  api:
+  app:
     restart: always
     image: app
     build: .
@@ -22,5 +22,5 @@ services:
     volumes:
       - .:/app
     depends_on:
-      - database
+      - postgres
     entrypoint: ["python", "manage.py","runserver"]

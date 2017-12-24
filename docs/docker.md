@@ -1,10 +1,15 @@
 # Docker Setup
-We will be using Docker to provide the same development environment across the team and eliminate aggravating environment troubleshooting in different OS. 
+We will be using Docker to provide the same development environment across your team. This will eliminate aggravating environment troubleshooting in different Operating Systems. We will not be using Docker in production since deployment using Heroku is easier.
 ## Prereqs
-- Install [Docker](https://docs.docker.com/engine/installation/#time-based-release-schedule)–if you are running Linux, install the Server version and install [Docker-Compose](https://docs.docker.com/compose/install/#install-compose)
-That's it!
+- [Docker](https://docs.docker.com/engine/installation/#time-based-release-schedule) – if you are running Linux, install the Server version and install [Docker-Compose](https://docs.docker.com/compose/install/#install-compose)<br>
+That's it! For Mac, you will see a Docker icon on the top bar, indicating that docker is running. 
+## Our Docker Configuration
+We have two Docker Images: 
+- ```app```: Our Flask Application
+- ```postgres```: Postgres Database
+Note: A new directory called ```postgres-data``` will be created. *DO NOT DELETE!!* It holds all your data in your database.
 ## Setup
-Check if you have installed Docker and Docker-Compose(Installing Docker on Mac/Windows will automatically install Docker-Compose)
+Check if you have installed Docker and Docker-Compose(Installing Docker on Mac/Windows will automatically install Docker-Compose):
 ```
 $ docker -v
 Docker version 17.09.1-ce, build 19e2cf6
@@ -17,8 +22,15 @@ $ docker-compose build
 $ docker-compose up -d
 $ docker-compose exec api python manage.py recreate_db
 ```
+Check if your Docker Containers are running:
 ```
+$ docker ps
+```
+Now go to ```http://localhost:5000``` and you should see the app running!
+## Common Docker commands
 Stop the API and Postgres Containers
+```
+
 ```
 docker-compose stop
 ```
