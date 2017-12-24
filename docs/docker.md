@@ -3,6 +3,12 @@ We will be using Docker to provide the same development environment across your 
 ## Prereqs
 - [Docker](https://docs.docker.com/engine/installation/#time-based-release-schedule) – if you are running Linux, install the Server version and install [Docker-Compose](https://docs.docker.com/compose/install/#install-compose)<br>
 That's it! For Mac, you will see a Docker icon on the top bar, indicating that docker is running. 
+## Understanding Docker
+Docker is a powerful tool that allows you to spin up containers–isolated and reproducible application environments, thus, allowing independence between applications and the infrastucture(ie your OS). 
+For in-depth information, check out the [Docker Docs](https://docs.docker.com/get-started/)<br>
+- *Docker Images*, what you get when you ```docker-compose build``` are snapshots of your code at that certain time. This describes a container
+- *Docker Containers* are instances of images. You can see the containers you are running with ```docker ps```
+- *Docker Compose* is a tool for running multi-container applications with Docker. In our case, we use it to spin up ```app``` and ```postgres``` containers. 
 ## Our Docker Configuration
 We have two Docker Images: 
 - ```app```: Our Flask Application
@@ -27,6 +33,25 @@ Check if your Docker Containers are running:
 $ docker ps
 ```
 Now go to ```http://localhost:5000``` and you should see the app running! Since it is in development configurations, any changes in your code will appear in the container and will auto-reload just like it would normally. 
+# Running and Stopping Docker Containers
+To start your Postgres and your flask api:
+```
+$ docker-compose start
+```
+To Stop:
+``` 
+$ docker-compose stop
+```
+To view your logs for the api:
+```
+$ docker-compose logs app
+```
+If you need to rebuild your containers, delete the previous containers and rebuild
+```
+$ docker-compose rm -f
+$ docker-compose up -d
+```
+#### NOTE: Be careful to not run multiple containers of the same image. Check with ```docker ps``` and ```docker-compose stop``` to stop all if you are running multiple containers and restart. 
 ## Docker and Databases
 Any commands, such as ```python manage.py db migrate``` MUST be performed inside the ```app``` Docker Container. If you need to access the postgres CLI, you MUST be inside the ```postgres``` Docker Container. <br>
 #### Migrating the database
@@ -71,21 +96,29 @@ Stop the API and Postgres Containers
 ```
 docker-compose stop
 ```
-List all Containers
+List all Containers:
 ```
-docker ps
+$ docker ps
 ```
-Stop all Containers
+Stop all Containers:
 ```
-docker stop $(docker ps -a)
+$ docker stop $(docker ps -a)
 ```
-Remove all images
+Remove all images:
 ```
-docker rmi $(docker images -q)
+$ docker rmi $(docker images -q)
+```
+To get all images
+```
+$ docker images
+```
+Remove specific images:
+```
+$ docker rmi [IMAGE_ID]
 ```
 Bash in a certain container, ie: ```api```
 ```
-docker-compose run api bash
+$ docker-compose run api bash
 ```
 You can also run bash if you have the container's id. To get a container's id, do ```docker ps```
 ```
@@ -95,8 +128,6 @@ Or run a specific bash command, id: ```ls```
 ```
 docker exec -it [CONTAINER_ID] ls
 ```
-Docker Images, what you get when you ```docker-compose build``` are snapshots of your code at that certain time
-Docker Containers are .....
 
 
 
