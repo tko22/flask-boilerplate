@@ -18,7 +18,7 @@ class ProductionConfig(Config):
 
 
 class DockerDevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql://testusr:password@database/testdb'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://testusr:password@postgres/testdb'
     DEBUG = True
 
 

@@ -20,17 +20,54 @@ Now build the Docker images(the flask app and postgres database) and setup the d
 ```
 $ docker-compose build
 $ docker-compose up -d
-$ docker-compose exec api python manage.py recreate_db
+$ docker-compose exec app python manage.py recreate_db
 ```
 Check if your Docker Containers are running:
 ```
 $ docker ps
 ```
-Now go to ```http://localhost:5000``` and you should see the app running!
-## Common Docker commands
-Stop the API and Postgres Containers
+Now go to ```http://localhost:5000``` and you should see the app running! Since it is in development configurations, any changes in your code will appear in the container and will auto-reload just like it would normally. 
+## Docker and Databases
+Any commands, such as ```python manage.py db migrate``` MUST be performed inside the ```app``` Docker Container. If you need to access the postgres CLI, you MUST be inside the ```postgres``` Docker Container. <br>
+#### Migrating the database
+You must access the ```app``` container's bash. You will then see your app directory copied inside: 
+```
+$ docker-compose exec app bash
+# ls
+asdfasdfasd
+```
+Then initalize migration files and migrate
+```
+# python manage.py db init
+# python manage.py db migrate
+# python manage.py db upgrade
+# exit
+```
+#### Accessing Postgres CLI
+You must access the ```postgres``` container's bash. 
+```
+$ docker-compose exec postgres bash
+```
+Then, you can ```psql``` inside and delete tables, databases, etc.
+```
+# su - postgres
+# psql
 ```
 
+## Wiping all Docker Containers and Starting all over again
+If you've given up trying to troubleshoot whatever is going wrong in Docker, here's a way to start all over. First, delete ```postgres-data```:
+```
+$ rm -rf postgres-data
+```
+Then delete all your related Docker Images and Containers
+```
+$ docker-compose stop
+$ docker-compose rm
+$ docker rmi $(docker images)
+```
+Now follow the setup steps again
+## Common Docker commands
+Stop the API and Postgres Containers
 ```
 docker-compose stop
 ```
