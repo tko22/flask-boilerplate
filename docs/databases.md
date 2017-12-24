@@ -1,4 +1,5 @@
 # Database Interactions
+This doc was written before Docker was implemented in. Check out the <a href="./docker.md">Docker doc<a> before looking through this. 
 ## SQLAlchemy Examples
 Here are some ways to use SQLAlchemy to query, add, and delete from your database. <br>
 Note: this example is specific to what is initially described in ```models.py```–A Table called Person with an attribute called "name"(String) and one-to-many relationship to the table Emails. Another Table called Email has an attribute called "email"(String) and a Foreign Key to Person. 
@@ -49,9 +50,11 @@ Tim
 [<email tim@gmail.com>,<email tim.ko@gmail.com>]
 ```
 ### Adding Dummy data 
-Eventually, you would want to make POST requests to certain endpoints that would add entries to the database. You can add dummy data through the python CLI. Make sure you're in the right virtualenv. 
+Eventually, you would want to make POST requests to certain endpoints that would add entries to the database. You can add dummy data through the python CLI. Make sure you're in the right virtualenv. <br> 
+
+**Note:** For Docker, go into the ```app``` container with ```docker-compose exec app bash``` beforehand.
 ```
-(venv)$ python
+$ python
 ```
 You will be at the head directory. Import the Objects you need from ```models.py``` and your database
 ```python
@@ -71,7 +74,10 @@ You can also write scripts to do this. Or you can also write scripts in the fron
 
 
 ## Database Schema Changes
-The Database Schema is described in ```models.py```. For any changes you make, you MUST let everyone know about it. First, create migration files for your changes:
+The Database Schema is described in ```models.py```. For any changes you make, you MUST let everyone know about it. First, create migration files for your changes:<br> 
+
+**Note:** For Docker, be sure to be inside the ```app``` container with ```docker-compose exec app bash``` beforehand.<br>
+For regular setup, make sure you're in the right virtualenv.
 ```
 $ python manage.py db migrate 
 ```
@@ -81,9 +87,20 @@ $ python manage.py db upgrade
 ```
 Everyone will have to follow this same process whenever someone pushes new changes to ```models.py```. Migration files will not be pushed into the main repo due to versioning complaints. <br>
 ### Versioning errors
-If you are getting errors when you migrate, remove the migrations folder, go into the postgres CLI, connect to the database, and Drop the ```alembic_version``` table.
+If you are getting errors when you migrate, remove the migrations folder, go into the postgres CLI, connect to the database, and Drop the ```alembic_version``` table.<br>
+
+**Note:** For Docker, make sure to be inside the ```app``` container with ```docker-compose exec app bash``` beforehand.
 ```
 $ rm -rf migrations/
+$ exit
+```
+Now, for Docker, access bash for the ```postgres``` container to edit the database. Skip if you aren't using Docker
+```
+$ docker-compose exec postgres bash
+# su - postgres
+```
+Then, for both Docker and Regular setup,
+```
 $ psql
 # \connect testdb
 # DROP TABLE alembic_version;
@@ -93,7 +110,9 @@ $ python manage.py db migrate
 $ python manage.py db upgrade
 ```
 ### Random errors
-Sometimes you might run into weird errors. Since you most likely will run into these errors in the beginning(when your schema keeps changing) and, thus, will not have important data inside your database, you can just delete the database and start all over.
+Sometimes you might run into weird errors. Since you most likely will run into these errors in the beginning(when your schema keeps changing) and, thus, will not have important data inside your database, you can just delete the database and start all over.<br>
+
+**Note:** For docker, you must be in the ```postgres``` container
 ```
 $ psql
 # DROP DATABASE testdb;
@@ -101,7 +120,7 @@ $ psql
 # GRANT ALL PRIVILEGES ON DATABASE testdb TO testusr;
 # \q
 ```
-Another way that might works is:
+Another way that might works is(for docker, you must be in the ```app``` container:
 ```
 $ python manage.py recreate_db
 ```
