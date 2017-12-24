@@ -1,8 +1,23 @@
-
-docker-compose build
-docker-compose up -d
-docker-compose exec api python manage.py recreate_db
-
+# Docker Setup
+We will be using Docker to provide the same development environment across the team and eliminate aggravating environment troubleshooting in different OS. 
+## Prereqs
+- Install [Docker](https://docs.docker.com/engine/installation/#time-based-release-schedule)–if you are running Linux, install the Server version and install [Docker-Compose](https://docs.docker.com/compose/install/#install-compose)
+That's it!
+## Setup
+Check if you have installed Docker and Docker-Compose(Installing Docker on Mac/Windows will automatically install Docker-Compose)
+```
+$ docker -v
+Docker version 17.09.1-ce, build 19e2cf6
+$ docker-compose -v
+docker-compose version 1.17.1, build 6d101fb
+```
+Now build the Docker images(the flask app and postgres database) and setup the database:
+```
+$ docker-compose build
+$ docker-compose up -d
+$ docker-compose exec api python manage.py recreate_db
+```
+```
 Stop the API and Postgres Containers
 ```
 docker-compose stop

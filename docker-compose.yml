@@ -24,4 +24,3 @@ services:
     depends_on:
       - database
     entrypoint: ["python", "manage.py","runserver"]
-  
