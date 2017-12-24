@@ -1,35 +1,37 @@
 # Flask Boilerplate 
-This Boilerplate meant for building out simple REST APIs meant to be deployed using Heroku and developed using Docker containers. Postgres is the choice of database. You can deploy it with anything else but instructions for that are not provided. Included are simple examples to help you get started. <br>
+This Boilerplate is meant for building out simple REST APIs deployed using Heroku and developed using Docker containers. Postgres is the choice of database. You can deploy it with anything else but instructions for that are not provided. Included are simple examples to help you get started. This app is written in Python 3.6 with Postgres 10 as the chosen database.<br>
 
 ## Docs
 - <a href='./docs/conventions.md'>Conventions</a>
 - <a href='./docs/databases.md'>Database Interactions & Troubleshooting</a>
 - <a href='./docs/heroku.md'>Heroku Deployment</a>
 - <a href='./docs/docker.md'>Docker</a>
+- <a href='./docs/regular-setup.md'>Regular setup if you hate Docker</a>
 
 ### Repository Contents
 * ```api/views/``` - Holds files that define your endpoints
 * ```api/models.py``` - Defines your database schema
-* ```api/__init__.py``` - What is ran initially when you start your application
+* ```api/__init__.py``` - What is initially ran when you start your application
 * ```tests/``` - Folder holding tests
 #### Others
-* ```migrations/``` - Holds migration files–doesn't exist until you ```python manage.py db init```
 * ```config.py``` - Provides Configuration for the application. There are two configurations: one for development and one for production using Heroku. 
 * ```manage.py``` - Command line interface that allows you to perform common functions with a command
 * ```requirements.txt``` - A list of python package dependencies the application requires
 * ```runtime.txt``` & ```Procfile``` - configuration for Heroku
 * ```Dockerfile``` - instructions for Docker to build the Flask app
 * ```docker-compose.yml``` - config to setup this Flask app and a Database
+* ```postgres-data/``` - Postgres Docker Container data - doesnt exist until you build your docker images and start your containers
+* ```migrations/``` - Holds migration files – doesn't exist until you ```python manage.py db init``` if you decide to not use docker
 
 ## Prereqs
 We will be utilizing Docker to provide the same development environment across your team. This will eliminate aggravating environment troubleshooting in different Operating Systems. We will not be using Docker in production since deployment using Heroku is easier.
 - [Docker](https://docs.docker.com/engine/installation/#time-based-release-schedule) – if you are running Linux, install the Server version and install [Docker-Compose](https://docs.docker.com/compose/install/#install-compose).
 And that's it! For Mac, you will see a Docker icon on the top bar, indicating that docker is running.
-- This app is written in Python 3.6 with Postgres 10
 ## Our Docker Configuration
 We have two Docker Images: 
 - ```app```: Our Flask Application
 - ```postgres```: Postgres Database<br>
+<br>
 Note: A new directory called ```postgres-data``` will be created. **DO NOT DELETE IT!!** It holds all your data in your database.
 ## 
 Check if you have installed **Docker** and **Docker-Compose**(Installing Docker on Mac/Windows will automatically install Docker-Compose):
@@ -49,7 +51,7 @@ Check if your Docker Containers are running:
 ```
 $ docker ps
 ```
-Now go to ```http://localhost:5000``` and you should see the app running! Since it is in development configurations, any changes in your code will appear in the container and will auto-reload just like it would normally. 
+Now go to http://localhost:5000/ and you should see the app running! Since it is in development configurations, any changes in your code will appear in the container and will auto-reload just like it would normally. 
 ## Running and Stopping Docker Containers
 To start your Postgres and your flask api:
 ```
@@ -68,7 +70,7 @@ If you need to rebuild your containers, delete the previous containers and rebui
 $ docker-compose rm -f
 $ docker-compose up -d
 ```
-#### NOTE: Be careful to not run multiple containers of the same image. Check with ```docker ps``` and use ```docker-compose stop``` to stop all the containers if you are running multiple containers and restart. 
+#### NOTE: Be careful to not run multiple containers of the same image. Check with ```docker ps``` and use ```docker-compose stop``` to stop all the containers if you are running multiple containers and then restart with ```docker-compose start```. 
 ## MISC
 If you would prefer to setup your application environment instead of using Docker, follow this doc - <a href='./docs/regular-setup.md'>Regular Setup</a>
 If you're annoyed by the __pycache__ files 
