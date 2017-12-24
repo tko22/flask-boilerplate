@@ -29,9 +29,9 @@ We will be utilizing Docker to provide the same development environment across y
 And that's it! For Mac, you will see a Docker icon on the top bar, indicating that docker is running.
 ## Our Docker Configuration
 We have two Docker Images: 
-- ```app```: Our Flask Application
-- ```postgres```: Postgres Database<br>
-<br>
+* ```app```: Our Flask Application
+* ```postgres```: Postgres Database<br>
+
 Note: A new directory called ```postgres-data``` will be created. **DO NOT DELETE IT!!** It holds all your data in your database.
 ## 
 Check if you have installed **Docker** and **Docker-Compose**(Installing Docker on Mac/Windows will automatically install Docker-Compose):
