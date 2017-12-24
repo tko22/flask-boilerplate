@@ -1,80 +1,76 @@
 # Flask Boilerplate 
-This Boilerplate meant for building out simple REST APIs meant to be deployed using Heroku. You can deploy it with anything else but instructions for that are not provided. Included are simple examples to help you get started. <br>
+This Boilerplate meant for building out simple REST APIs meant to be deployed using Heroku and developed using Docker containers. Postgres is the choice of database. You can deploy it with anything else but instructions for that are not provided. Included are simple examples to help you get started. <br>
 
 ## Docs
 - <a href='./docs/conventions.md'>Conventions</a>
 - <a href='./docs/databases.md'>Database Interactions & Troubleshooting</a>
 - <a href='./docs/heroku.md'>Heroku Deployment</a>
+- <a href='./docs/docker.md'>Docker</a>
 
 ### Repository Contents
-* ```/api/views/``` - Holds files that define your endpoints
-* ```/api/models.py``` - Defines your database schema
-* ```/api/__init__.py``` - What is ran initially when you start your application
+* ```api/views/``` - Holds files that define your endpoints
+* ```api/models.py``` - Defines your database schema
+* ```api/__init__.py``` - What is ran initially when you start your application
+* ```tests/``` - Folder holding tests
 #### Others
-* ```/migrations``` - Holds migration files–doesn't exist until you ```python manage.py db init```
+* ```migrations/``` - Holds migration files–doesn't exist until you ```python manage.py db init```
 * ```config.py``` - Provides Configuration for the application. There are two configurations: one for development and one for production using Heroku. 
 * ```manage.py``` - Command line interface that allows you to perform common functions with a command
 * ```requirements.txt``` - A list of python package dependencies the application requires
 * ```runtime.txt``` & ```Procfile``` - configuration for Heroku
+* ```Dockerfile``` - instructions for Docker to build the Flask app
+* ```docker-compose.yml``` - config to setup this Flask app and a Database
 
-## Setup 
-### Pre-requisites:
-- Python 3.x
-- pip 9.0
-- PostgreSQL <br>
-Note: This doesn't have authentication yet. Coming soon! <br>
-#### If your developing with Windows, ¯\\_(ツ)_/¯ <br>
-Clone the Repository and cd into it
+## Prereqs
+We will be utilizing Docker to provide the same development environment across your team. This will eliminate aggravating environment troubleshooting in different Operating Systems. We will not be using Docker in production since deployment using Heroku is easier.
+- [Docker](https://docs.docker.com/engine/installation/#time-based-release-schedule) – if you are running Linux, install the Server version and install [Docker-Compose](https://docs.docker.com/compose/install/#install-compose).
+And that's it! For Mac, you will see a Docker icon on the top bar, indicating that docker is running.
+- This app is written in Python 3.6 with Postgres 10
+## Our Docker Configuration
+We have two Docker Images: 
+- ```app```: Our Flask Application
+- ```postgres```: Postgres Database<br>
+Note: A new directory called ```postgres-data``` will be created. **DO NOT DELETE IT!!** It holds all your data in your database.
+## 
+Check if you have installed **Docker** and **Docker-Compose**(Installing Docker on Mac/Windows will automatically install Docker-Compose):
 ```
-$ git clone https://github.com/tko22/flask-boilerplate.git
-$ cd flask-boilerplate
+$ docker -v
+Docker version 17.09.1-ce, build 19e2cf6
+$ docker-compose -v
+docker-compose version 1.17.1, build 6d101fb
 ```
-To install Postgres with Homebrew([postgresapp](http://postgresapp.com/) also works):
+Now build the Docker images(the flask app and postgres database) and setup the database:
 ```
-$ brew install postgresql
-$ brew link postgresql
+$ docker-compose build
+$ docker-compose up -d
+$ docker-compose exec app python manage.py recreate_db
 ```
-This should start your postgres server(Ctrl-C to stop):
+Check if your Docker Containers are running:
 ```
-$ postgres -D /usr/local/var/postgres
+$ docker ps
 ```
-It should say ```listening on IPv6 address "::1", port 5432``` If not, change the port. On a separate CLI:
+Now go to ```http://localhost:5000``` and you should see the app running! Since it is in development configurations, any changes in your code will appear in the container and will auto-reload just like it would normally. 
+## Running and Stopping Docker Containers
+To start your Postgres and your flask api:
 ```
-$ createdb
-$ psql -h localhost
+$ docker-compose start
 ```
-Always remember to use the ***same virtual environement***!!!! This is a good practice for any python development. <br>
-First, install virtualenv, create and activate the environment called **venv**:
-```bash
-$ pip3 install virtualenv
-$ virtualenv -p python3 venv
-$ source venv/bin/activate
+To stop them:
+``` 
+$ docker-compose stop
 ```
-You will then have a ```(venv)``` before the ```$```, meaning that you are now in your virtual environment. Then, install the python package dependencies, which include Flask.
+To view your logs for the api:
 ```
-(venv)$ pip install -r requirements.txt
+$ docker-compose logs app
 ```
-To deactivate when you're using it:
+If you need to rebuild your containers, delete the previous containers and rebuild
 ```
-(venv)$ deactivate venv
+$ docker-compose rm -f
+$ docker-compose up -d
 ```
-After installing Postgres, create a user(with name 'testusr' and password 'password') and a database called 'testdb' then grant privileges. We will do this in your CLI:
-```
-$ psql
-# create user testusr with password 'password';
-# create database testdb owner testusr encoding 'utf-8';
-# GRANT ALL PRIVILEGES ON DATABASE testdb TO testusr;
-```
-Note: Please replace the user name and password and database name to what you want in your own application. You must change those configurations in ```config.py``` and in ```.env```
-## Running Development Server
-To run the server, make sure you are in the root directory:
-```
-(venv)$ python manage.py runserver
-```
-The API should be at http://127.0.0.1:5000/ for you to experience its beauty LOL 
-
+#### NOTE: Be careful to not run multiple containers of the same image. Check with ```docker ps``` and use ```docker-compose stop``` to stop all the containers if you are running multiple containers and restart. 
 ## MISC
-
+If you would prefer to setup your application environment instead of using Docker, follow this doc - <a href='./docs/regular-setup.md'>Regular Setup</a>
 If you're annoyed by the __pycache__ files 
 ```
 find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
@@ -86,6 +82,7 @@ find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
 * [Learn Python](https://www.learnpython.org/) - Learning Python3
 * [Relational Databases](https://www.ntu.edu.sg/home/ehchua/programming/sql/Relational_Database_Design.html) - Designing a database schema
 * [REST API](http://www.restapitutorial.com/lessons/restquicktips.html) - tips on making an API Restful
+* [Docker Docs](https://docs.docker.com/get-started/) - Docker docs
 
 Feel free to contact me for questions :) <br>
 tk2@illinois.edu
