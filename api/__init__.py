@@ -13,6 +13,7 @@ app.config.from_object(config[env])
 
 db = SQLAlchemy(app)
 db.create_all()
+db.session.commit()
 
 # import and register blueprints
 from api.views import main

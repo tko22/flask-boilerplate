@@ -5,3 +5,7 @@ docker-compose*
 README.md
 LICENSE
 .vscode
+postgres-data
+__pycache__
+.DS_Store/
+migrations/
