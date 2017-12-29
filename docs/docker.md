@@ -123,12 +123,19 @@ $ docker-compose run api bash
 ```
 You can also run bash if you have the container's id. To get a container's id, do ```docker ps```
 ```
-docker exec -it [CONTAINER_ID] /bin/bash
+$ docker exec -it [CONTAINER_ID] /bin/bash
 ```
 Or run a specific bash command, id: ```ls```
 ```
-docker exec -it [CONTAINER_ID] ls
+$ docker exec -it [CONTAINER_ID] ls
 ```
-
+Remove 
+- all stopped containers
+- all volumes not used by at least one container
+- all networks not used by at least one container
+- all images without at least one container associated to them
+```
+$ docker system prune
+```
 
 
