@@ -13,12 +13,9 @@ services:
       - "5432:5432"
   app:
     restart: always
-    image: app
     build: .
     ports:
       - 5000:5000
-    environment:
-      - FLASK_DEBUG=1
     volumes:
       - .:/app
     depends_on:
