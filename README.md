@@ -24,7 +24,7 @@ This Boilerplate is meant for building out simple REST APIs deployed using Herok
 * ```migrations/``` - Holds migration files – doesn't exist until you ```python manage.py db init``` if you decide to not use docker
 
 ## Prereqs
-We will be utilizing Docker to provide the same development environment across your team. This will eliminate aggravating environment troubleshooting in different Operating Systems. We will not be using Docker in production since deployment using Heroku is easier.
+We will be utilizing Docker to provide the same development environment across your team. This will eliminate aggravating environment troubleshooting in different Operating Systems. We will not be using Docker in production since deployment using Heroku is easier. Check out this <a href="https://medium.freecodecamp.org/docker-development-workflow-a-guide-with-flask-and-postgres-db1a1843044a">blog post</a> I wrote for more information.
 - [Docker](https://docs.docker.com/engine/installation/#time-based-release-schedule) – if you are running Linux, install the Server version and install [Docker-Compose](https://docs.docker.com/compose/install/#install-compose).
 And that's it! For Mac, you will see a Docker icon on the top bar, indicating that docker is running.
 ## Our Docker Configuration
