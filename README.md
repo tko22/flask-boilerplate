@@ -32,8 +32,7 @@ We have two Docker Images:
 * ```app```: Our Flask Application
 * ```postgres```: Postgres Database<br>
 
-Note: A new directory called ```postgres-data``` will be created. **DO NOT DELETE IT!!** It holds all your data in your database.
-## 
+## Setup
 Check if you have installed **Docker** and **Docker-Compose**(Installing Docker on Mac/Windows will automatically install Docker-Compose):
 ```
 $ docker -v
@@ -51,7 +50,8 @@ Check if your Docker Containers are running:
 ```
 $ docker ps
 ```
-Now go to http://localhost:5000/ and you should see the app running! Since it is in development configurations, any changes in your code will appear in the container and will auto-reload just like it would normally. 
+Now go to http://localhost:5000/ and you should see the app running! Since it is in development configurations, any changes in your code will appear in the container and will auto-reload just like it would normally. <br>
+#### Note: A new directory called ```postgres-data``` will be created. **DO NOT DELETE IT!!** It holds all your data in your database.
 ## Running and Stopping Docker Containers
 To start your Postgres and your flask api:
 ```
