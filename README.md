@@ -2,7 +2,7 @@
 This Boilerplate is meant for building out simple REST APIs deployed using Heroku and developed using Docker containers. This app is written in Python 3.6 with Postgres 10 as the chosen data persistance. You can deploy it with another service, like AWS, Google Cloud, and DigitalOcean with Gunicorn and Nginx, but instructions for that are not provided. Included are simple examples to help you get started. For development, the default way is to use Docker for ease of setup. However, there is documentation for setup without docker <a href='./docs/regular-setup.md'>here.</a> I've also written a <a href="https://medium.freecodecamp.org/docker-development-workflow-a-guide-with-flask-and-postgres-db1a1843044a">blog post</a> about using Docker based on this repository.<br> 
 
 ## Docs
-Please Please **PLEASE** read documentation if you understand something
+Please Please **PLEASE** read documentation if you dont understand something
 - <a href='./docs/conventions.md'>Conventions</a>
 - <a href='./docs/databases.md'>Database Interactions & Troubleshooting</a>
 - <a href='./docs/heroku.md'>Heroku Deployment</a>
