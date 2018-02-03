@@ -56,8 +56,12 @@ Check if your Docker Containers are running:
 $ docker ps
 ```
 Now go to http://localhost:5000/ and you should see the app running! Since it is in development configurations, any changes in your code will appear in the container and will auto-reload just like it would normally. ```docker-compose up -d``` will build and start it. You will not be using that to start the container after this setup step. Look at the next section for instructions. <br> 
+Now stop the container:
+``` 
+$ docker-compose stop
+```
 #### Note: A new directory called ```postgres-data``` will be created. **DO NOT DELETE IT!!** It holds all your data in your database.
-## Running and Stopping Docker Containers
+## Running and Stopping Docker Containers - these are the instructions you run after the Setup!
 To start your Postgres and your flask api:
 ```
 $ docker-compose start
