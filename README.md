@@ -33,6 +33,10 @@ We have two Docker Images:
 * ```postgres```: Postgres Database<br>
 
 ## Setup
+First, clone the repo:
+```
+git clone https://github.com/tko22/flask-boilerplate.git
+```
 Check if you have installed **Docker** and **Docker-Compose**(Installing Docker on Mac/Windows will automatically install Docker-Compose):
 ```
 $ docker -v
