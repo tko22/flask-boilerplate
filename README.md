@@ -38,12 +38,16 @@ First, clone the repo:
 ```
 git clone https://github.com/tko22/flask-boilerplate.git
 ```
-Check if you have installed **Docker** and **Docker-Compose**(Installing Docker on Mac/Windows will automatically install Docker-Compose):
+Check if you have installed **Docker** and **Docker-Compose**(Installing [Docker](https://docs.docker.com/engine/installation/#time-based-release-schedule) on Mac/Windows will automatically install Docker-Compose):
 ```
 $ docker -v
 Docker version 17.09.1-ce, build 19e2cf6
 $ docker-compose -v
 docker-compose version 1.17.1, build 6d101fb
+```
+If it doesn't work, try resetting your shell:
+```
+$ reset
 ```
 Now build the Docker images(the flask app and postgres database) and setup the database:
 ```
