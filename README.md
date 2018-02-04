@@ -7,6 +7,7 @@ Please Please **PLEASE** read documentation if you dont understand something
 - <a href='./docs/databases.md'>Database Interactions & Troubleshooting</a>
 - <a href='./docs/heroku.md'>Heroku Deployment</a>
 - <a href='./docs/docker.md'>Docker</a>
+- <a href='./docs/WSL-setup.md'>Windows subsystem for Linux setup</a>
 - <a href='./docs/regular-setup.md'>Regular setup if you hate Docker</a>
 
 ### Repository Contents
