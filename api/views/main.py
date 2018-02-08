@@ -3,7 +3,7 @@ from flask import Blueprint, request
 from api.models import Person
 import json
 from flask import jsonify
-import utils
+from api.utils import getJSONResponse, InvalidUsage
 
 mod = Blueprint('main', __name__)
 
