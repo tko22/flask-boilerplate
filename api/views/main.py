@@ -3,7 +3,7 @@ from flask import Blueprint, request
 from api.models import Person
 import json
 from flask import jsonify
-from api.utils import getJSONResponse, InvalidUsage
+from api.utils import create_response, InvalidUsage
 
 mod = Blueprint('main', __name__)
 
@@ -15,4 +15,7 @@ def index():
 # function that is called when you visit /persons
 @app.route('/persons')
 def name():
-    return jsonify({'Status':'Success','Data':Person.query.all()}) # returns all elements in Person
+    try:
+        create_response(data=Person.query.all())
+    except Exception as ex:
+        return create_response(data={}, status=400, message=str(ex))
