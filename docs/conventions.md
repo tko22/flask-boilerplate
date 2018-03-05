@@ -7,6 +7,8 @@ app.register_blueprint(main.mod)
 ```
 - The **Database** Structure will be defined under ``api/models.py``. Look at the Database Schema Section to know how to update your database. We are using [SQLAlchemy](http://docs.sqlalchemy.org/en/latest/) as our ORM, which allows us to create, query, and filter through the database easily. 
 
+For more Flask Conventions, look at [this](https://github.com/hack4impact-uiuc/wiki/wiki/Flask-API-Conventions)
+
 ## Git Flow 
 Before you start making changes, make sure you have the most recently updated version of `master`:
 ```
