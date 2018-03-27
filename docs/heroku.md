@@ -1,7 +1,10 @@
 ## Heroku Deployment
 Heroku allows you to easily deploy your application without worrying about dependencies and how to set up your server. Once it's set up you can just push your code to Heroku and it will automatically update.<br>
-You must have a Heroku Account and have the Heroku CLI installed on your computer. First, create an application in your Heroku dashboard, click on the "Deploy" tab and find the ```git remote add ....``` and run that command in your repository. <br>
-While you're still in your Heroku Dashboard, click add "Heroku Postgres". This will add a Postgres Database to your app(we will connect it later).<br>
+**You must have a Heroku Account and have the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) installed on your computer.** 
+
+First, create an application in your Heroku dashboard, click on the "Deploy" tab and find the ```git remote add ....``` and run that command in your repository.
+While you're still in your Heroku Dashboard, click add `Heroku Postgres`. This will add a Postgres Database to your app(we will connect it later).
+
 Then, login into heroku in your command line:
 ```
 $ heroku login
