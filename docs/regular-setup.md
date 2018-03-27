@@ -20,10 +20,11 @@ This should start your postgres server(Ctrl-C to stop):
 ```
 $ postgres -D /usr/local/var/postgres
 ```
-It should say ```listening on IPv6 address "::1", port 5432``` If not, change the port. On a separate CLI:
+It should say ```listening on IPv6 address "::1", port 5432``` If not, change the port. On a separate CLI, check whether you can access the database:
 ```
 $ createdb
 $ psql -h localhost
+# \q
 ```
 Always remember to use the ***same virtual environement***!!!! This is a good practice for any python development. <br>
 First, install virtualenv, create and activate the environment called **venv**:
