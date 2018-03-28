@@ -27,10 +27,39 @@ $ createdb
 $ psql -h localhost
 # \q
 ```
+After installing Postgres, create a user(with name 'testusr' and password 'password') and a database called 'testdb' then grant privileges. We will do this in your CLI:
+```
+$ psql
+# create user testusr with password 'password';
+# create database testdb owner testusr encoding 'utf-8';
+# GRANT ALL PRIVILEGES ON DATABASE testdb TO testusr;
+```
+Note: Please replace the user name and password and database name to what you want in your own application. You must change those configurations in ```config.py``` and in ```.env```
 We will be using [pipenv](https://docs.pipenv.org/), the officially recommended Python packaging tool from [Python](https://packaging.python.org/tutorials/managing-dependencies/#managing-dependencies). If prefer to use `pip` instead of `pipenv`, look below for instructions. Pipenv is very similar to npm and yarn in Javascript and it automatically creates/manages a virtualenv while adding/removing packages from your `Pipfile`. It also manages and autoloads environment variables and in general, helps developers setup a working environment. 
 
+First, install pipenv. If you are on MacOS, use homebrew:
+```
+brew install pipenv
+```
+If you're using Linux or Windows, I'd just use pip:
+```
+pip install pipenv
+```
 
+Then, setup pipenv for flask-boilerplate:
+```
+pipenv --python 3.6
+```
+That's it! All your dependencies will be installed in your virtualenv. Virtualenv is a tool to create isolated Python environments, which allow you to 
 
+To start your virtualenv, run:
+```
+pipenv shell
+```
+Now, any python command you run will be ran inside this virtual environment. You should get something that looks like this:
+```
+(flask-boilerplate-_rcP-Rlt) bash-3.2 $
+```
 
 
 ### Using Pip
@@ -51,17 +80,10 @@ To deactivate when you're using it:
 ```
 (venv)$ deactivate venv
 ```
-After installing Postgres, create a user(with name 'testusr' and password 'password') and a database called 'testdb' then grant privileges. We will do this in your CLI:
-```
-$ psql
-# create user testusr with password 'password';
-# create database testdb owner testusr encoding 'utf-8';
-# GRANT ALL PRIVILEGES ON DATABASE testdb TO testusr;
-```
-Note: Please replace the user name and password and database name to what you want in your own application. You must change those configurations in ```config.py``` and in ```.env```
+Note that the rest of the instructions are written in the context of using Pipenv, not pip. If you are using pip, your command line will have `(venv)$` in front instead of the `(flask......) bash-3.2$`
 ## Running Development Server
 To run the server, make sure you are in the root directory:
 ```
-(venv)$ python manage.py runserver
+(flask-boilerplate-_rcP-Rlt) bash-3.2$ python manage.py runserver
 ```
 The API should be at http://127.0.0.1:5000/ for you to experience its beauty LOL 
