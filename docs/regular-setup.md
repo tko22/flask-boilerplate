@@ -35,6 +35,7 @@ $ psql
 # GRANT ALL PRIVILEGES ON DATABASE testdb TO testusr;
 ```
 Note: Please replace the user name and password and database name to what you want in your own application. You must change those configurations in ```config.py``` and in ```.env```
+
 We will be using [pipenv](https://docs.pipenv.org/), the officially recommended Python packaging tool from [Python](https://packaging.python.org/tutorials/managing-dependencies/#managing-dependencies). If prefer to use `pip` instead of `pipenv`, look below for instructions. Pipenv is very similar to npm and yarn in Javascript and it automatically creates/manages a virtualenv while adding/removing packages from your `Pipfile`. It also manages and autoloads environment variables and in general, helps developers setup a working environment. 
 
 First, install pipenv. If you are on MacOS, use homebrew:
@@ -50,7 +51,7 @@ Then, setup pipenv for flask-boilerplate:
 ```
 pipenv --python 3.6
 ```
-That's it! All your dependencies will be installed in your virtualenv. Virtualenv is a tool to create isolated Python environments, which allow you to 
+That's it! All your dependencies will be installed in your virtualenv. Virtualenv is a tool to create isolated Python environments, which will prevent dependency conflicts with your python projects.
 
 To start your virtualenv, run:
 ```
@@ -60,8 +61,11 @@ Now, any python command you run will be ran inside this virtual environment. You
 ```
 (flask-boilerplate-_rcP-Rlt) bash-3.2 $
 ```
-
-
+To deactivate, type `exit`:
+```
+(flask-boilerplate-_rcP-Rlt) bash-3.2 $ exit
+```
+For more instructions, see the [official documentation](https://docs.pipenv.org) for pipenv.
 ### Using Pip
 Using pip would require a little bit more steps, since you would have to use pip and virtualenv separately. In addition, managing `requirements.txt` can be a pain. For more benefits `pipenv` solves, look at their [documentation](https://docs.pipenv.org/). I'd recommend using Pipenv but if you still haven't changed your mind, here are the instructions. 
 
@@ -85,5 +89,9 @@ Note that the rest of the instructions are written in the context of using Pipen
 To run the server, make sure you are in the root directory:
 ```
 (flask-boilerplate-_rcP-Rlt) bash-3.2$ python manage.py runserver
+```
+If you are using pipenv, you may also run commands without being inside your virtual environment:
+```
+$ pipenv run python manage.py runserver # pipenv run [command]
 ```
 The API should be at http://127.0.0.1:5000/ for you to experience its beauty LOL 
