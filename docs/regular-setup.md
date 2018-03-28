@@ -5,8 +5,30 @@ This option should be secondary to the <a href='./docs/docker.md'>Docker</a> set
 - pip 9.0
 
 For installations for Mac, [here](https://github.com/hack4impact-uiuc/wiki/wiki/Mac-Setup) are the steps for that.
+
 Note: This doesn't have authentication yet. Coming soon! <br>
-#### If your developing with Windows, ¯\\_(ツ)_/¯ <br> Check out the <a href='./WSL-setup.md'>Windows setup Doc</a>
+#### If your developing with Windows, ¯\\_(ツ)_/¯  Check out the <a href='./WSL-setup.md'>Windows setup Doc</a>
+
+## Mac
+If you have a Mac, run this script and everything should be setup. 
+```
+$ ./mac_setup.sh
+```
+## Running Development Server
+To run the server, make sure you are in the root directory. Then, startup the virtual environment and run the server:
+```
+$ pipenv shell  # startup virtual environment
+(flask-boilerplate-_rcP-Rlt) bash-3.2$ python manage.py runserver
+```
+If you are using pipenv, you may also run commands without being inside your virtual environment:
+```
+$ pipenv run python manage.py runserver # pipenv run [command]
+```
+The API should be at http://127.0.0.1:5000/ for you to experience its beauty LOL
+
+## Step-by-Step Instructions
+If you prefer to go through step-by-step instructions to understand what's going on, you're at the right place!
+
 Clone the Repository and cd into it
 ```
 $ git clone https://github.com/tko22/flask-boilerplate.git
@@ -17,11 +39,15 @@ To install Postgres with Homebrew([postgresapp](http://postgresapp.com/) also wo
 $ brew install postgresql
 $ brew link postgresql
 ```
-This should start your postgres server(Ctrl-C to stop):
+This should start your postgres server:
 ```
-$ postgres -D /usr/local/var/postgres
+$ brew services start postgresql
 ```
-It should say ```listening on IPv6 address "::1", port 5432``` If not, change the port. On a separate CLI, check whether you can access the database. Your postgres server must be on in-order for this to work:
+To stop:
+```
+$ brew services stop postgresql
+```
+On a separate CLI, check whether you can access the database. Your postgres server must be on in order for this to work:
 ```
 $ createdb
 $ psql -h localhost
@@ -84,14 +110,4 @@ To deactivate when you're using it:
 ```
 (venv)$ deactivate venv
 ```
-Note that the rest of the instructions are written in the context of using Pipenv, not pip. If you are using pip, your command line will have `(venv)$` in front instead of the `(flask......) bash-3.2$`
-## Running Development Server
-To run the server, make sure you are in the root directory:
-```
-(flask-boilerplate-_rcP-Rlt) bash-3.2$ python manage.py runserver
-```
-If you are using pipenv, you may also run commands without being inside your virtual environment:
-```
-$ pipenv run python manage.py runserver # pipenv run [command]
-```
-The API should be at http://127.0.0.1:5000/ for you to experience its beauty LOL 
+If you are using pip, your command line will have `(venv)$` in front instead of the `(flask......) bash-3.2$` Now look above for instructions to run the server.

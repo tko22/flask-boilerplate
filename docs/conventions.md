@@ -9,6 +9,12 @@ app.register_blueprint(main.mod)
 
 For more Flask Conventions, look at [this](https://github.com/hack4impact-uiuc/wiki/wiki/Flask-API-Conventions)
 
+## Utility Functions
+I've provided a couple utility functions/classes to help with Database Serialization and Responses. They are all located in `./api/utils.py`. 
+- `Mixin` is a class for all tables (represented by classes) in `models.py` to extend. This will add a `to_dict()` serialization function.  
+- `create_response(data={}, status=200, message='')` is a helper function to create responses. This follows the API specification described [here](https://github.com/hack4impact-uiuc/wiki/wiki/Our-REST-API-Specification). You must provide a dictionary for data. 
+- `serialize_list()` is a helper function to serialize a list of SQLAlchemy objects. Look at `./api/views/main.py` for a use case.
+
 ## Git Flow 
 Before you start making changes, make sure you have the most recently updated version of `master`:
 ```

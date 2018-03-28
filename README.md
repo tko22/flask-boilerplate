@@ -1,19 +1,24 @@
 # Flask Boilerplate 
-This Boilerplate is meant for building out simple REST APIs deployed using Heroku and developed using Docker containers. This app is written in Python 3.6 with Postgres 10 as the chosen data persistance. You can deploy it with another service, like AWS, Google Cloud, and DigitalOcean with Gunicorn and Nginx, but instructions for that are not provided. Included are simple examples to help you get started. For development, the default way is to use Docker for ease of setup. However, there is documentation for setup without docker <a href='./docs/regular-setup.md'>here.</a> I've also written a <a href="https://medium.freecodecamp.org/docker-development-workflow-a-guide-with-flask-and-postgres-db1a1843044a">blog post</a> about using Docker based on this repository.<br> 
+This Boilerplate is meant for building out simple REST APIs deployed using Heroku and developed using Docker containers. It is primarily used at [Hack4Impact UIUC](https://github.com/hack4impact-uiuc). This app is written in Python 3.6 with Postgres 10 as the chosen data persistance. You can deploy it with another service, like AWS, Google Cloud, and DigitalOcean with Gunicorn and Nginx, but instructions for that are not provided. Included are simple examples to help you get started. 
+
+For development, the default way is to use Docker for ease of setup. However, there is documentation for setup without docker <a href='./docs/regular-setup.md'>here.</a> Setup Instructions will be provided below. I've also written a <a href="https://medium.freecodecamp.org/docker-development-workflow-a-guide-with-flask-and-postgres-db1a1843044a">blog post</a> about using Docker based on this repository.<br> 
+
+![](../master/docs/flask.gif)
 
 ## Docs
 Please Please **PLEASE** read documentation if you dont understand something
-- <a href='./docs/conventions.md'>Conventions</a>
+- <a href='./docs/conventions.md'>Conventions + Utility Functions/Classes</a>
 - <a href='./docs/databases.md'>Database Interactions & Troubleshooting</a>
 - <a href='./docs/heroku.md'>Heroku Deployment</a>
 - <a href='./docs/docker.md'>Docker</a>
 - <a href='./docs/WSL-setup.md'>Windows subsystem for Linux setup</a>
-- <a href='./docs/regular-setup.md'>Regular setup if you hate Docker</a>
+- <a href='./docs/regular-setup.md'>Regular setup</a>
 
 ### Repository Contents
 * ```api/views/``` - Holds files that define your endpoints
 * ```api/models.py``` - Defines your database schema
 * ```api/__init__.py``` - What is initially ran when you start your application
+* ```api/utils.py``` - utility functions and classes - explained [here](./docs/conventions.md)
 * ```tests/``` - Folder holding tests
 #### Others
 * ```config.py``` - Provides Configuration for the application. There are two configurations: one for development and one for production using Heroku. 
@@ -24,9 +29,33 @@ Please Please **PLEASE** read documentation if you dont understand something
 * ```docker-compose.yml``` - config to setup this Flask app and a Database
 * ```postgres-data/``` - Postgres Docker Container data - doesnt exist until you build your docker images and start your containers
 * ```migrations/``` - Holds migration files – doesn't exist until you ```python manage.py db init``` if you decide to not use docker
+## Regular Setup
+We will be using [pipenv](http://pipenv.org/), the official package manager for Python. It will manage dependencies and virtual environments for your project. For a better understanding and list of commands you can use with pipenv, look into the [official documenation](http://pipenv.org/).
 
-## Prereqs
-We will be utilizing Docker to provide the same development environment across your team. This will eliminate aggravating environment troubleshooting in different Operating Systems. We will not be using Docker in production since deployment using Heroku is easier. Check out this <a href="https://medium.freecodecamp.org/docker-development-workflow-a-guide-with-flask-and-postgres-db1a1843044a">blog post</a> I wrote for more information.
+If you have Windows, visit [here](./docs/WSL-setup.md) for setup instructions. If you prefer Docker, instructions are provided in the next section and don't worry about pipenv. 
+
+If you have a Mac, make sure you have homebrew, python3, and pip installed ([instructions here](https://github.com/hack4impact-uiuc/wiki/wiki/Mac-Setup)). Then, clone the repo, cd into the repo, run this script (you may need to `sudo`):
+```
+$ git clone https://github.com/tko22/flask-boilerplate.git
+$ cd flask-boilerplate
+$ ./mac_setup.sh
+```
+Visit [here](./docs/regular-setup.md) for step-by-step instructions on how to setup this up if you'd like to understand how to do it. Otherwise, the script works fine. To run the server, make sure you are in the root directory. Then, startup the virtual environment and run the server:
+```
+$ pipenv shell  # startup virtual environment
+(flask-boilerplate-_rcP-Rlt) bash-3.2$ python manage.py runserver
+```
+If you are using pipenv, you may also run commands without being inside your virtual environment like this `pipenv run [command]`:
+```
+$ pipenv run python manage.py runserver
+```
+The API should be at http://127.0.0.1:5000/ for you to experience its beauty. To start and stop postgres:
+```
+$ brew services start postgresql
+$ brew services stop postgresql
+```
+## Docker Setup
+We will be utilizing Docker to provide the same development environment across your team. This will eliminate aggravating environment troubleshooting in different Operating Systems. I'd recommend that you use regular setup above if you have a Mac due to the script. We will not be using Docker in production since deployment using Heroku is easier. Check out this <a href="https://medium.freecodecamp.org/docker-development-workflow-a-guide-with-flask-and-postgres-db1a1843044a">blog post</a> I wrote for more information. Note that the Docker configuration files have changed in support for pipenv.
 - [Docker](https://docs.docker.com/engine/installation/#time-based-release-schedule) – if you are running Linux, install the Server version and install [Docker-Compose](https://docs.docker.com/compose/install/#install-compose).
 And that's it! For Mac, you will see a Docker icon on the top bar, indicating that docker is running.
 ## Our Docker Configuration
@@ -38,6 +67,7 @@ We have two Docker Images:
 First, clone the repo:
 ```
 git clone https://github.com/tko22/flask-boilerplate.git
+cd flask-boilerplate
 ```
 Check if you have installed **Docker** and **Docker-Compose**(Installing [Docker](https://docs.docker.com/engine/installation/#time-based-release-schedule) on Mac/Windows will automatically install Docker-Compose):
 ```
@@ -54,7 +84,6 @@ Now build the Docker images(the flask app and postgres database) and setup the d
 ```
 $ docker-compose build
 $ docker-compose up -d
-$ docker-compose exec app python manage.py recreate_db
 ```
 Check if your Docker Containers are running:
 ```
@@ -67,6 +96,7 @@ $ docker-compose stop
 ```
 #### Note: A new directory called ```postgres-data``` will be created. **DO NOT DELETE IT!!** It holds all your data in your database.
 ## Running and Stopping Docker Containers - these are the instructions you run after the Setup!
+Please look at our [Docker Documentation](./docs/docker.md) for this boilerplate and the [official documentation](https://docs.docker.com/) for a more comprehensive list. 
 To start your Postgres and your flask api:
 ```
 $ docker-compose start
@@ -87,6 +117,7 @@ $ docker-compose up -d
 #### NOTE: Be careful to not run multiple containers of the same image. Check with ```docker ps``` and use ```docker-compose stop``` to stop all the containers if you are running multiple containers and then restart with ```docker-compose start```. 
 ## MISC
 If you would prefer to setup your application environment instead of using Docker, follow this doc - <a href='./docs/regular-setup.md'>Regular Setup</a>
+
 If you're annoyed by the __pycache__ files 
 ```
 find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf

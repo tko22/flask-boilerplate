@@ -29,13 +29,13 @@ $ heroku run bash
 ~ $ python manage.py db migrate
 ~ $ python manage.py db upgrade
 ```
+Finally, open up your live app by clicking the "Open App" button on the top-right corner of your Heroku dashboard!
 ## Heroku Postgres CLI 
 A pretty neat command to go into the heroku postgres CLI is:
 ```
 $ heroku pg:psql
 ```
-Note: You are already inside your database! \n
-Finally, open up your live app by clicking the "Open App" button on the top-right corner of your Heroku dashboard!
+Note: You are already inside your database!
 ## Version Errors when migrating database
 This happens when the alembic table SQLAlchemy uses screws up. You must remove it and migrate the database again.<br>
 Go into the Heroku postgres database

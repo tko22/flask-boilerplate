@@ -12,10 +12,11 @@ CORS(app)
 env = os.environ.get('FLASK_ENV', 'dev')
 app.config.from_object(config[env])
 
-db_url = config[env].SQLALCHEMY_DATABASE_URI
-if not database_exists(db_url):
-    print("Database doesn't exist. Creating now...")
-    create_database(db_url)
+if (env != 'prod'):
+    db_url = config[env].SQLALCHEMY_DATABASE_URI
+    if not database_exists(db_url):
+        print("Database doesn't exist. Creating now...")
+        create_database(db_url)
 
 db = SQLAlchemy(app)
 Migrate(app, db)

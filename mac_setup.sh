@@ -7,6 +7,8 @@ set -o errexit  # exit on any errors
 brew install postgresql
 brew link postgresql
 brew services start postgresql
+brew install pipenv
+pipenv install
 
 # wait until postgres is started
 while ! pg_isready -h "localhost" -p "5432" > /dev/null 2> /dev/null; do
@@ -21,6 +23,5 @@ psql -c "create user testusr with password 'password';" || true     # pass on er
 psql -c "ALTER USER testusr WITH SUPERUSER;" || true
 # psql -c "create database testdb owner testusr encoding 'utf-8';"
 # psql -c "GRANT ALL PRIVILEGES ON DATABASE testdb TO testusr;"
-brew install pipenv
-pipenv install
+
 pipenv run python manage.py recreate_db
