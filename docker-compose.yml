@@ -20,4 +20,4 @@ services:
       - .:/app
     depends_on:
       - postgres
-    entrypoint: ["python", "manage.py","runserver"]
+    entrypoint: ["python", "manage.py", "runserver"]

@@ -1,7 +1,7 @@
 from api import app
 from flask import Blueprint
 from api.models import Person
-from api.utils import create_response, InvalidUsage
+from api.utils import create_response, serialize_list
 
 mod = Blueprint('main', __name__)
 
@@ -16,6 +16,8 @@ def index():
 @app.route('/persons')
 def name():
     try:
-        create_response(data=Person.query.all())
+        persons = Person.query.all()
+        persons_list = serialize_list(persons)   
+        return create_response(data={'persons': persons_list})
     except Exception as ex:
         return create_response(data={}, status=400, message=str(ex))

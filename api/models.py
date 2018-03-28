@@ -1,10 +1,8 @@
 from api import db
-from sqlalchemy.dialects.postgresql import JSON
-from flask_sqlalchemy import SQLAlchemy
+from api.utils import Mixin
 
-# db = SQLAlchemy()
 
-class Person(db.Model):
+class Person(Mixin, db.Model):
     """Person"""
     __tablename__ = "person"
 
@@ -18,16 +16,17 @@ class Person(db.Model):
     def __repr__(self):
         return '<name {}>'.format(self.name)
 
-class Email(db.Model):
+
+class Email(Mixin, db.Model):
     """Email"""
     __tablename__ = "email"
-    
+
     id = db.Column(db.Integer, unique=True, primary_key=True)
     email = db.Column(db.String, nullable=False)
     person = db.Column(db.Integer, db.ForeignKey('person.id', ondelete='SET NULL'), nullable=True)
 
     def __init__(self, email):
-            self.email = email
+        self.email = email
 
     def __repr__(self):
         return '<email {}>'.format(self.email)
