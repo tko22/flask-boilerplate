@@ -39,12 +39,10 @@ To quit out of the Postgres CLI:
 postgres=# \q
 ```
 
-Although not required, creating a virtual environment is strongly recommended. Install virtualenv with pip if you don't already have it, and create your virtual environment. ```venv``` can be renamed to whatever you want your virtual environment to be named:
+Let's install pipenv, our virtual environment and package manager.
 ```
-$ pip3 install virtualenv
-$ virtualenv -p python3 venv
+$ pip3 install pipenv
 ```
-
 Activate your virtual environment and you should see ```(venv)``` appear before your commands to indicate that you are in your virtual environment. You can install the Python package dependencies after activation:
 ```
 $ source venv/bin/activate

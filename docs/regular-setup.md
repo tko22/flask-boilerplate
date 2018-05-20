@@ -6,7 +6,6 @@ This option should be secondary to the <a href='./docs/docker.md'>Docker</a> set
 
 For installations for Mac, [here](https://github.com/hack4impact-uiuc/wiki/wiki/Mac-Setup) are the steps for that.
 
-Note: This doesn't have authentication yet. Coming soon! <br>
 #### If your developing with Windows, ¯\\_(ツ)_/¯  Check out the <a href='./WSL-setup.md'>Windows setup Doc</a>
 
 ## Mac
