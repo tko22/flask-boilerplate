@@ -14,6 +14,8 @@ services:
   app:
     restart: always
     build: .
+    environment:
+      - FLASK_ENV=docker
     ports:
       - 5000:5000
     volumes:

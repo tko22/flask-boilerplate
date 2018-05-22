@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
-from config import config
+from api.config import config
 import os
 from sqlalchemy_utils import create_database, database_exists
 from flask_migrate import Migrate
