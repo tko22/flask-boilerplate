@@ -1,5 +1,7 @@
-from api import db
+from flask_sqlalchemy import SQLAlchemy
 from api.utils import Mixin
+
+db = SQLAlchemy()
 
 
 class Person(Mixin, db.Model):

@@ -1,5 +1,4 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from config import config
 import os
@@ -18,7 +17,10 @@ if (env != 'prod'):
         print("Database doesn't exist. Creating now...")
         create_database(db_url)
 
-db = SQLAlchemy(app)
+# register sqlalchemy to this app
+from api.models import db
+db.init_app(app)
+
 Migrate(app, db)
 
 # import and register blueprints
