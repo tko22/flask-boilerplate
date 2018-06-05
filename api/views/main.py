@@ -17,7 +17,9 @@ def index():
 def name():
     try:
         persons = Person.query.all()
-        persons_list = serialize_list(persons)   
+        persons_list = serialize_list(persons)
+        x = create_response(data={'persons': persons_list})
+        print(type(x[0]))
         return create_response(data={'persons': persons_list})
     except Exception as ex:
         return create_response(data={}, status=400, message=str(ex))

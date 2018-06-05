@@ -1,16 +1,17 @@
 from flask import jsonify
-
+from flask.wrappers import Response
+from typing import Tuple
 
 class Mixin():
 
-    def to_dict(self):
+    def to_dict(self) -> dict:
         d_out = dict((key, val) for key, val in self.__dict__.items())
         d_out.pop('_sa_instance_state', None)
         d_out['_id'] = d_out.pop('id', None)  # rename id key to interface with response
         return d_out
 
 
-def create_response(data={}, status=200, message=''):
+def create_response(data: dict ={}, status: int =200, message: str ='') -> Tuple[Response, int]:
     """
     Wraps response in a consistent format throughout the API
     Format inspired by https://medium.com/@shazow/how-i-design-json-api-responses-71900f00f2db
@@ -34,7 +35,10 @@ def create_response(data={}, status=200, message=''):
     return jsonify(response), status
 
 
-def serialize_list(items):
+def serialize_list(items: list) -> dict:
+    """
+    Serializes a list of SQLAlchemy Objects, exposing their attributes
+    """
     if not items or items is None:
         return []
     return [x.to_dict() for x in items]

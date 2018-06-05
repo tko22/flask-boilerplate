@@ -18,6 +18,8 @@ Flask-Cors = "*"
 flask-script = "*"
 sqlalchemy-utils = "*"
 flask = "*"
+black = "*"
+mypy = "*"
 
 [dev-packages]
 "flake8" = "*"
