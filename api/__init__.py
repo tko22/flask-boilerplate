@@ -8,10 +8,10 @@ from flask_migrate import Migrate
 app = Flask(__name__)
 
 CORS(app)
-env = os.environ.get('FLASK_ENV', 'dev')
+env = os.environ.get("FLASK_ENV", "dev")
 app.config.from_object(config[env])
 
-if (env != 'prod'):
+if env != "prod":
     db_url = config[env].SQLALCHEMY_DATABASE_URI
     if not database_exists(db_url):
         print("Database doesn't exist. Creating now...")
@@ -19,10 +19,12 @@ if (env != 'prod'):
 
 # register sqlalchemy to this app
 from api.models import db
+
 db.init_app(app)
 
 Migrate(app, db)
 
 # import and register blueprints
 from api.views import main
+
 app.register_blueprint(main.mod)

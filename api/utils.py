@@ -2,16 +2,18 @@ from flask import jsonify
 from flask.wrappers import Response
 from typing import Tuple
 
-class Mixin():
 
+class Mixin:
     def to_dict(self) -> dict:
         d_out = dict((key, val) for key, val in self.__dict__.items())
-        d_out.pop('_sa_instance_state', None)
-        d_out['_id'] = d_out.pop('id', None)  # rename id key to interface with response
+        d_out.pop("_sa_instance_state", None)
+        d_out["_id"] = d_out.pop("id", None)  # rename id key to interface with response
         return d_out
 
 
-def create_response(data: dict ={}, status: int =200, message: str ='') -> Tuple[Response, int]:
+def create_response(
+    data: dict = {}, status: int = 200, message: str = ""
+) -> Tuple[Response, int]:
     """
     Wraps response in a consistent format throughout the API
     Format inspired by https://medium.com/@shazow/how-i-design-json-api-responses-71900f00f2db
@@ -24,13 +26,13 @@ def create_response(data: dict ={}, status: int =200, message: str ='') -> Tuple
     - the value is the data itself
     """
     if type(data) is not dict:
-        raise TypeError('Data should be a dictionary 😞')
+        raise TypeError("Data should be a dictionary 😞")
 
     response = {
-        'success': 200 <= status < 300,
-        'code': status,
-        'message': message,
-        'result': data
+        "success": 200 <= status < 300,
+        "code": status,
+        "message": message,
+        "result": data,
     }
     return jsonify(response), status
 

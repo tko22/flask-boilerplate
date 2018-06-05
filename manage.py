@@ -7,12 +7,12 @@ from api.models import db
 manager = Manager(app)
 migrate = Migrate(app, db)
 
-manager.add_command('db', MigrateCommand)
+manager.add_command("db", MigrateCommand)
 
 
 @manager.command
 def runserver():
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host="0.0.0.0", port=5000)
 
 
 @manager.command
@@ -24,7 +24,7 @@ def runworker():
 def test():
     import unittest
 
-    tests = unittest.TestLoader().discover('tests')
+    tests = unittest.TestLoader().discover("tests")
     unittest.TextTestRunner(verbosity=2).run(tests)
 
 
@@ -39,5 +39,5 @@ def recreate_db():
     db.session.commit()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     manager.run()
