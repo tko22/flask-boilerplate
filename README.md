@@ -23,7 +23,8 @@ Please Please **PLEASE** read the documentation if you don't understand somethin
 - `api/views/` - Holds files that define your endpoints
 - `api/models.py` - Defines your database schema
 - `api/__init__.py` - What is initially ran when you start your application
-- `api/utils.py` - utility functions and classes - explained [here](./docs/conventions.md)
+- `api/utils.py` - utility functions and classes - explained [here](https://github.com/tko22/flask-boilerplate/wiki/Conventions)
+- `api/core.py` - includes core functionality including error handlers and logger
 - `tests/` - Folder holding tests
 
 #### Others
@@ -47,6 +48,7 @@ find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
 ### Additional Documentation
 
 - [Flask](http://flask.pocoo.org/) - Flask Documentation
+- [Flask Tutorial](http://flask.pocoo.org/docs/1.0/tutorial/) - great tutorial. Many patterns used here were pulled from there.
 - [Flask SQLAlchemy](http://flask-sqlalchemy.pocoo.org/2.3/) - the ORM for the database
 - [Heroku](https://devcenter.heroku.com/articles/getting-started-with-python#introduction) - Deployment using Heroku
 - [Learn Python](https://www.learnpython.org/) - Learning Python3

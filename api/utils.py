@@ -1,6 +1,5 @@
 from typing import Tuple, List
 
-from api import app
 from flask import jsonify
 from flask.wrappers import Response
 
@@ -59,12 +58,3 @@ def serialize_list(items: List) -> List:
         return []
     return [x.to_dict() for x in items]
 
-
-# add specific Exception handlers before this
-@app.errorhandler(Exception)
-def all_exception_handler(error: Exception) -> Tuple[Response, int]:
-    """Catches and handles all exceptions, add more specific error Handlers.
-    :param Exception
-    :returns Tuple of a Flask Response and int
-    """
-    return create_response(message=str(error), status=500)

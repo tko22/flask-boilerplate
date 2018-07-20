@@ -2,32 +2,43 @@ import os
 
 from flask import Flask
 from flask_cors import CORS
-from api.config import config
 from flask_migrate import Migrate
 from sqlalchemy_utils import create_database, database_exists
 
-app = Flask(__name__)
+from api.config import config
+from api.core import all_exception_handler
 
-CORS(app)  # add CORS
 
-# check environment variables to see which config to load
-env = os.environ.get("FLASK_ENV", "dev")
-app.config.from_object(config[env])
+def create_app(test_config=None):
+    app = Flask(__name__)
 
-# decide whether to create database
-if env != "prod":
-    db_url = config[env].SQLALCHEMY_DATABASE_URI
-    if not database_exists(db_url):
-        print("Database doesn't exist. Creating now...")
-        create_database(db_url)
+    CORS(app)  # add CORS
+    if test_config:
+        app.config.from_mapping(**test_config)
+    else:
+        # check environment variables to see which config to load
+        env = os.environ.get("FLASK_ENV", "dev")
+        app.config.from_object(config[env])
 
-# register sqlalchemy to this app
-from api.models import db
+    # decide whether to create database
+    if env != "prod":
+        db_url = config[env].SQLALCHEMY_DATABASE_URI
+        if not database_exists(db_url):
+            print("Database doesn't exist. Creating now...")
+            create_database(db_url)
 
-db.init_app(app)
-Migrate(app, db)
+    # register sqlalchemy to this app
+    from api.models import db
 
-# import and register blueprints
-from api.views import main
+    db.init_app(app)
+    Migrate(app, db)
 
-app.register_blueprint(main.mod)
+    # import and register blueprints
+    from api.views import main
+
+    app.register_blueprint(main.main)
+
+    # register error Handler
+    app.register_error_handler(Exception, all_exception_handler)
+
+    return app
