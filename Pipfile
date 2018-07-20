@@ -18,11 +18,11 @@ Flask-Cors = "*"
 flask-script = "*"
 sqlalchemy-utils = "*"
 flask = "*"
-black = "*"
+black = "==18.6b4"
 mypy = "*"
 
 [dev-packages]
 "flake8" = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"

@@ -1,11 +1,12 @@
 from flask_sqlalchemy import SQLAlchemy
 from api.utils import Mixin
 
+# instantiate database object
 db = SQLAlchemy()
 
 
 class Person(Mixin, db.Model):
-    """Person"""
+    """Person Table."""
 
     __tablename__ = "person"
 
@@ -13,15 +14,15 @@ class Person(Mixin, db.Model):
     name = db.Column(db.String, nullable=False)
     emails = db.relationship("Email", backref="emails")
 
-    def __init__(self, name):
+    def __init__(self, name: str):
         self.name = name
 
     def __repr__(self):
-        return "<name {}>".format(self.name)
+        return "<Person {}>".format(self.name)
 
 
 class Email(Mixin, db.Model):
-    """Email"""
+    """Email Table."""
 
     __tablename__ = "email"
 
@@ -35,4 +36,4 @@ class Email(Mixin, db.Model):
         self.email = email
 
     def __repr__(self):
-        return "<email {}>".format(self.email)
+        return "<Email {}>".format(self.email)

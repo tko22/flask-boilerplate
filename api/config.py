@@ -2,7 +2,6 @@ import os
 
 
 class Config:
-
     SECRET_KEY = "testkey"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 

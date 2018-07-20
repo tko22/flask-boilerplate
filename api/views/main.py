@@ -9,17 +9,15 @@ mod = Blueprint("main", __name__)
 # function that is called when you visit /
 @app.route("/")
 def index():
+    # access the logger with `app.logger` and uses the standard logging module
+    app.logger.info("Hello World!")
     return "<h1>Hello World!</h1>"
 
 
 # function that is called when you visit /persons
 @app.route("/persons")
 def name():
-    try:
-        persons = Person.query.all()
-        persons_list = serialize_list(persons)
-        x = create_response(data={"persons": persons_list})
-        print(type(x[0]))
-        return create_response(data={"persons": persons_list})
-    except Exception as ex:
-        return create_response(data={}, status=400, message=str(ex))
+    persons = Person.query.all()
+    persons_list = serialize_list(persons)
+
+    return create_response(data={"persons": persons_list})
