@@ -4,6 +4,8 @@
 
 set -o errexit  # exit on any errors
 
+brew install python3
+brew upgrade python3
 brew install postgresql
 brew link postgresql
 brew services start postgresql

@@ -1,6 +1,7 @@
-version: '2.1'
+version: '3.4'
 services:
   postgres:
+    container_name: postgres
     restart: always
     image: postgres:10
     environment:
@@ -8,10 +9,11 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=${POSTGRES_DB}
     volumes:
-      - ./postgres-data/postgres:/var/lib/postgresql/data
+      - flask-app-db:/var/lib/postgresql/data
     ports:
       - "5432:5432"
   app:
+    container_name: app
     restart: always
     build: .
     environment:
@@ -24,3 +26,7 @@ services:
       - postgres
     entrypoint: 
       - /app/docker_script.sh
+
+volumes:
+  flask-app-db:
+    name: flask-app-db
