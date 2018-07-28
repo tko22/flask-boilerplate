@@ -1,12 +1,20 @@
 import os
+import logging
 
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS
 from flask_migrate import Migrate
 from sqlalchemy_utils import create_database, database_exists
 
 from api.config import config
 from api.core import all_exception_handler
+
+
+class RequestFormatter(logging.Formatter):
+    def format(self, record):
+        record.url = request.url
+        record.remote_addr = request.remote_addr
+        return super().format(record)
 
 
 def create_app(test_config=None):
@@ -32,6 +40,22 @@ def create_app(test_config=None):
 
     db.init_app(app)
     Migrate(app, db)
+
+    # logging
+    formatter = RequestFormatter(
+        "%(asctime)s %(remote_addr)s: requested %(url)s: %(levelname)s in [%(module)s: %(lineno)d]: %(message)s"
+    )
+    fh = logging.FileHandler(app.config["LOG_FILE"])
+    fh.setLevel(logging.DEBUG)
+    fh.setFormatter(formatter)
+
+    strm = logging.StreamHandler()
+    strm.setLevel(logging.DEBUG)
+    strm.setFormatter(formatter)
+
+    app.logger.addHandler(fh)
+    app.logger.addHandler(strm)
+    app.logger.setLevel(logging.DEBUG)
 
     # import and register blueprints
     from api.views import main

@@ -49,8 +49,8 @@ def create_response(
 
 
 def serialize_list(items: List) -> List:
-    """
-    Serializes a list of SQLAlchemy Objects, exposing their attributes
+    """Serializes a list of SQLAlchemy Objects, exposing their attributes.
+    
     :param items - List of Objects that inherit from Mixin
     :returns List of dictionaries
     """

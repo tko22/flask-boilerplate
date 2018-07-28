@@ -4,6 +4,7 @@ import os
 class Config:
     SECRET_KEY = "testkey"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    LOG_FILE = "api.log"
 
 
 class DevelopmentConfig(Config):
