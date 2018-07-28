@@ -1,15 +1,27 @@
-import unittest
-import requests
+import api
+from api import db
+from api.models import Person
+
+# client passed from client - look into pytest for more info about fixtures
+def test_index(client):
+    rs = client.get("/")
+    assert rs.status_code == 200
 
 
-class BasicTestCase(unittest.TestCase):
-    def test_index(self):
-        r = requests.get("http://127.0.0.1:5000/")
-        self.assertEqual(r.status_code, 200)
+def test_get_person(client):
+    rs = client.get("/persons")
 
-    def test_person_endpoint(self):
-        r = requests.get("http://127.0.0.1:5000/")
-        self.assertEqual(r.status_code, 200)
-        json_dict = r.json()
-        self.assertEqual(json_dict["Status"], "Success")
-        self.assertIsNotNone(json_dict["Data"])
+    assert rs.status_code == 200
+    ret_dict = rs.json  # gives you a dictionary
+    assert ret_dict["success"] == True
+    assert ret_dict["result"]["persons"] == []
+
+    # create Person and test whether it returns a person
+    temp_person = Person(name="Tim")
+    db.session.add(temp_person)
+    db.session.commit()
+
+    rs = client.get("/persons")
+    ret_dict = rs.json
+    assert len(ret_dict["result"]["persons"]) == 1
+    assert ret_dict["result"]["persons"][0]["name"] == "Tim"

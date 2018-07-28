@@ -8,3 +8,4 @@ postgres-data/
 .mypy_cache
 .pytest_cache
 api.log
+test.db

@@ -1,7 +1,9 @@
-from api import create_app
-from api.models import db
+import pytest
+
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
+from api import create_app
+from api.models import db
 
 app = create_app()
 
@@ -23,10 +25,7 @@ def runworker():
 
 @manager.command
 def test():
-    import unittest
-
-    tests = unittest.TestLoader().discover("tests")
-    unittest.TextTestRunner(verbosity=2).run(tests)
+    pytest.main(["tests"])
 
 
 @manager.command
