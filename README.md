@@ -18,6 +18,24 @@ The goal of this boilerplate is to allow developers to quickly write their API w
 
 Please Please **PLEASE** read the documentation if you don't understand something relevant to this boilerplate. Documentation is provided in the [wiki page](https://github.com/tko22/flask-boilerplate/wiki) of this repository.
 
+## Usage
+
+Here are some quickstart instructions, although I would look at the [documentation](https://github.com/tko22/flask-boilerplate/wiki) for more details.
+
+First start a postgres docker container and persist the data with a volume `flask-app-db`:
+
+```
+docker run -e POSTGRES_USER=testusr -e POSTGRES_PASSWORD=password -e POSTGRES_DB=testdb -p 5432:5432 -v flask-app-db:/var/lib/postgresql/data -d postgres:10
+```
+
+Then, install the python dependencies and run the server:
+
+```
+pipenv install
+pipenv install --dev
+pipenv run python manage.py runserver
+```
+
 ### Repository Contents
 
 - `api/views/` - Holds files that define your endpoints

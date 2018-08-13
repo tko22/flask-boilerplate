@@ -11,6 +11,7 @@ brew link postgresql
 brew services start postgresql
 brew install pipenv
 pipenv install
+pipenv install --dev
 
 # wait until postgres is started
 while ! pg_isready -h "localhost" -p "5432" > /dev/null 2> /dev/null; do

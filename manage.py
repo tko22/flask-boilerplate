@@ -1,5 +1,3 @@
-import pytest
-
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 from api import create_app
@@ -21,11 +19,6 @@ def runserver():
 @manager.command
 def runworker():
     app.run(debug=False)
-
-
-@manager.command
-def test():
-    pytest.main(["tests"])
 
 
 @manager.command
