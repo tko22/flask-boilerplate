@@ -9,7 +9,7 @@ import pytest
 import sqlalchemy
 from flask_migrate import Migrate
 
-from api import create_app, db
+from api import create_app
 
 SQLITE_FILE_PATH = f"{os.getcwd()}/test.db"
 
@@ -29,7 +29,11 @@ def client():
 
     # wait for sqlite file to be created
     time.sleep(2)
+    from api.models import db
+
     db.create_all()
+    # for test client api reference
+    # http://flask.pocoo.org/docs/1.0/api/#test-client
     client = app.test_client()
     yield client
 

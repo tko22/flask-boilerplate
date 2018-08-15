@@ -1,7 +1,6 @@
 from flask import Blueprint
 from api.models import Person
-from api.utils import create_response, serialize_list
-from api.core import logger
+from api.core import create_response, serialize_list, logger
 
 main = Blueprint("main", __name__)
 
@@ -15,7 +14,8 @@ def index():
 
 
 # function that is called when you visit /persons
-@main.route("/persons")
-def name():
+@main.route("/persons", methods=["GET"])
+def get_persons():
     persons = Person.query.all()
     return create_response(data={"persons": serialize_list(persons)})
+

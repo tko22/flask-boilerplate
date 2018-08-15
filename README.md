@@ -33,6 +33,7 @@ Then, install the python dependencies and run the server:
 ```
 pipenv install
 pipenv install --dev
+pipenv run python manage.py recreate_db
 pipenv run python manage.py runserver
 ```
 

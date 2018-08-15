@@ -8,7 +8,6 @@ from sqlalchemy_utils import create_database, database_exists
 
 from api.config import config
 from api.core import all_exception_handler
-from api.models import db
 
 
 class RequestFormatter(logging.Formatter):
@@ -53,7 +52,10 @@ def create_app(test_config=None):
         db_url = app.config["SQLALCHEMY_DATABASE_URI"]
         if not database_exists(db_url):
             create_database(db_url)
+
     # register sqlalchemy to this app
+    from api.models import db
+
     db.init_app(app)
     Migrate(app, db)
 
