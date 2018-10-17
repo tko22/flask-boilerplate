@@ -1,4 +1,5 @@
 import os
+from api.core import get_pg_url
 
 
 class Config:
@@ -8,8 +9,12 @@ class Config:
 
 
 class DevelopmentConfig(Config):
-    SQLALCHEMY_DATABASE_URI = "postgresql://testusr:password@127.0.0.1:5432/testdb"
-    # SQLALCHEMY_DATABASE_URI = 'postgres://127.0.0.1:5432'
+    url = (
+        get_pg_url()
+        if get_pg_url()
+        else "postgresql://testusr:password@127.0.0.1:5432/testdb"  # TODO set the URI to get_pg_url() once you have `creds.ini` setup
+    )
+    SQLALCHEMY_DATABASE_URI = url
     DEBUG = True
 
 

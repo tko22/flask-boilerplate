@@ -4,26 +4,20 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-alembic = "==0.9.6"
 Flask-Migrate = "==2.1.1"
 Flask-Script = "==2.0.6"
 Flask-SQLAlchemy = "==2.3.2"
 gunicorn = "==19.7.1"
-"psycopg2" = "==2.7.3.2"
-pyflakes = "==1.6.0"
-requests = "==2.18.4"
 SQLAlchemy = "==1.1.14"
-"urllib3" = "==1.22"
-Flask-Cors = "*"
-flask-script = "*"
-sqlalchemy-utils = "*"
-flask = "*"
+Flask-Cors = "==3.0.6"
+sqlalchemy-utils = "==0.33.6"
+flask = "==1.0.2"
 
 [dev-packages]
-"flake8" = "*"
-black = "==18.6b4"
+pylint="~=2.1.1"
+black = "==18.9b0"
 mypy = "*"
-pytest = "*"
+pytest = "==3.7.1"
 
 [requires]
 python_version = "3.7"

@@ -1,2 +1,2 @@
-web: gunicorn api:app
+web: gunicorn manage:app
 worker: python manage.py runworker

@@ -47,6 +47,9 @@ def create_app(test_config=None):
     app.logger.addHandler(strm)
     app.logger.setLevel(logging.DEBUG)
 
+    root = logging.getLogger("core")
+    root.addHandler(strm)
+
     # decide whether to create database
     if env != "prod":
         db_url = app.config["SQLALCHEMY_DATABASE_URI"]

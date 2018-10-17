@@ -9,3 +9,4 @@ postgres-data/
 .pytest_cache
 api.log
 test.db
+creds.ini

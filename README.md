@@ -28,6 +28,8 @@ First start a postgres docker container and persist the data with a volume `flas
 docker run -e POSTGRES_USER=testusr -e POSTGRES_PASSWORD=password -e POSTGRES_DB=testdb -p 5432:5432 -v flask-app-db:/var/lib/postgresql/data -d postgres:10
 ```
 
+Another option is to create a postgres instance on a cloud service like elephantsql and connect it to this app. Remember to change the postgres url and don't hard code it in!
+
 Then, install the python dependencies and run the server:
 
 ```
@@ -37,10 +39,19 @@ pipenv run python manage.py recreate_db
 pipenv run python manage.py runserver
 ```
 
+For ease of setup, I have hard-coded postgres URLs for development and docker configurations. If you are using a separate postgres instance as mentioned above, _do not hardcode_ the postgres url including the credentials to your code. Instead, create a file called `creds.ini` in the same directory level as `manage.py` and write something like this:
+
+```
+[pg_creds]
+pg_url = postgresql://testusr:password@127.0.0.1:5432/testdb
+```
+
+For production, you should do something similar with the flask `SECRET_KEY`.
+
 ### Repository Contents
 
 - `api/views/` - Holds files that define your endpoints
-- `api/models.py` - Defines your database schema
+- `api/models/` - Holds files that defines your database schema
 - `api/__init__.py` - What is initially ran when you start your application
 - `api/utils.py` - utility functions and classes - explained [here](https://github.com/tko22/flask-boilerplate/wiki/Conventions)
 - `api/core.py` - includes core functionality including error handlers and logger

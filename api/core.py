@@ -1,3 +1,5 @@
+import configparser
+import logging
 from typing import Tuple, List
 
 from werkzeug.local import LocalProxy
@@ -6,6 +8,7 @@ from flask.wrappers import Response
 
 # logger object for all views to use
 logger = LocalProxy(lambda: current_app.logger)
+core_logger = logging.getLogger("core")
 
 
 class Mixin:
@@ -65,3 +68,28 @@ def all_exception_handler(error: Exception) -> Tuple[Response, int]:
     :returns Tuple of a Flask Response and int
     """
     return create_response(message=str(error), status=500)
+
+
+def get_pg_url(file: str = "creds.ini") -> str:
+    """Gets Postgres URL including credentials from specified file.
+
+    Example of File:
+    ```
+    [pg_creds]
+    pg_url = postgresql://testusr:password@127.0.0.1:5432/testdb
+    ```
+    :param file name
+    :returns str or None if exception failed
+    """
+    try:
+
+        config = configparser.ConfigParser()
+        config.read(file)
+
+        mongo_section = config["pg_creds"]
+        return mongo_section["pg_url"]
+    except KeyError:
+        print(
+            f"Failed to retrieve postgres url. Check if {file} exists in the top directory and whether it follows the correct format."
+        )
+        return None
