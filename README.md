@@ -16,7 +16,7 @@ The goal of this boilerplate is to allow developers to quickly write their API w
 
 ## Docs
 
-Please Please **PLEASE** read the documentation if you don't understand something relevant to this boilerplate. Documentation is provided in the [wiki page](https://github.com/tko22/flask-boilerplate/wiki) of this repository.
+Please Please **PLEASE** read the documentation if you don't understand something relevant to this boilerplate. Documentation is provided in the [wiki page](https://github.com/tko22/flask-boilerplate/wiki) of this repository. I've also added comments with links to specific Flask Documentation to explain certain design choices and/or a specific Flask API (ex: test clients).
 
 ## Usage
 

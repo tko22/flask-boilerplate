@@ -62,6 +62,7 @@ def serialize_list(items: List) -> List:
 
 
 # add specific Exception handlers before this, if needed
+# More info at http://flask.pocoo.org/docs/1.0/patterns/apierrors/
 def all_exception_handler(error: Exception) -> Tuple[Response, int]:
     """Catches and handles all exceptions, add more specific error Handlers.
     :param Exception
@@ -90,6 +91,6 @@ def get_pg_url(file: str = "creds.ini") -> str:
         return mongo_section["pg_url"]
     except KeyError:
         print(
-            f"Failed to retrieve postgres url. Check if {file} exists in the top directory and whether it follows the correct format."
+            f"Failed to retrieve postgres url. Check if {file} exists in the top directory and whether it follows the correct format. Ignore this message if you are not using creds.ini."
         )
         return None

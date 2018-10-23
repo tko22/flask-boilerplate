@@ -3,11 +3,13 @@ from flask_migrate import Migrate, MigrateCommand
 from api import create_app
 from api.models import db
 
+# sets up the app
 app = create_app()
 
 manager = Manager(app)
 migrate = Migrate(app, db)
 
+# adds the python manage.py db init, db migrate, db upgrade commands
 manager.add_command("db", MigrateCommand)
 
 
@@ -24,8 +26,9 @@ def runworker():
 @manager.command
 def recreate_db():
     """
-    Recreates a local database. You probably should not use this on
-    production.
+    Recreates a database. This should only be used once
+    when there's a new database instance. This shouldn't be
+    used when you migrate your database.
     """
     db.drop_all()
     db.create_all()
