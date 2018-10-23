@@ -5,22 +5,30 @@ import tempfile
 import time
 from unittest import mock
 
+import testing.postgresql
 import pytest
 import sqlalchemy
 from flask_migrate import Migrate
 
 from api import create_app
 
-SQLITE_FILE_PATH = f"{os.getcwd()}/test.db"
 
-
-# testing using sqlite, which may
-# not be the same as testing with
-# postgres but for unit tests, this will do
 @pytest.fixture(scope="session")
-def client():
+def postgres():
+    """
+    The postgres Fixture. Starts a postgres instance inside a temp directory
+    and closes it after tests are done.
+    """
+    with testing.postgresql.Postgresql() as postgresql:
+        yield postgresql
+
+
+# We spin up a temporary postgres instance
+# in which we inject it into the app
+@pytest.fixture(scope="session")
+def client(postgres):
     config_dict = {
-        "SQLALCHEMY_DATABASE_URI": f"sqlite:///{SQLITE_FILE_PATH}",
+        "SQLALCHEMY_DATABASE_URI": postgres.url(),
         "DEBUG": True,
         "SQLALCHEMY_TRACK_MODIFICATIONS": False,
     }
@@ -37,5 +45,3 @@ def client():
     client = app.test_client()
     yield client
 
-    # remove the file
-    os.remove(SQLITE_FILE_PATH)

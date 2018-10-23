@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "0268b3ac821fb865229b9d35b2ba571a1b77e24cc65191933d2e348278eeb52b"
+            "sha256": "5225999a9909bd4f923adcfb1b106a59d545c9015184107e298f97e99c9be048"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -104,6 +104,13 @@
             ],
             "version": "==1.0"
         },
+        "pg8000": {
+            "hashes": [
+                "sha256:18192d90409a3037619ef17f1924e3fd9c7169c9c1b3277cec1982116ec2b6de",
+                "sha256:81e461583c25c4de9994b890187057dd5857f0d6f7569bf4eaf00c9973d94422"
+            ],
+            "version": "==1.12.3"
+        },
         "psycopg2": {
             "hashes": [
                 "sha256:0b9e48a1c1505699a64ac58815ca99104aacace8321e455072cee4f7fe7b2698",
@@ -173,6 +180,21 @@
             ],
             "index": "pypi",
             "version": "==0.33.6"
+        },
+        "testing.common.database": {
+            "hashes": [
+                "sha256:965d80b2985315325dc358c3061b174a712f4d4d5bf6a80b58b11f9a1dd86d73",
+                "sha256:e3ed492bf480a87f271f74c53b262caf5d85c8bc09989a8f534fa2283ec52492"
+            ],
+            "version": "==2.0.3"
+        },
+        "testing.postgresql": {
+            "hashes": [
+                "sha256:1b41daeb98dfc8cd4a584bb91e8f5f4ab182993870f95257afe5f1ba6151a598",
+                "sha256:8e1a69760369a7a8ffe63a66b6d95a5cd82db2fb976e4a8f85ffd24fbfc447d8"
+            ],
+            "index": "pypi",
+            "version": "==1.3.0"
         },
         "werkzeug": {
             "hashes": [
