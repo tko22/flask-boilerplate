@@ -1,6 +1,6 @@
-# Flask Boilerplate
+# Flask Boilerplate [![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/tko22/flask-boilerplate&env=DATABASE_URL)
 
-This is an minimal but opinionated boilerplate meant for building out simple REST APIs. It is primarily used at [Hack4Impact UIUC](https://github.com/hack4impact-uiuc). This app is written in Python 3.6 with Postgres 10 as the chosen data persistence. The default way to deploy it is with Heroku but you can deploy it with another service, like AWS, Google Cloud, or DigitalOcean with Gunicorn and Nginx, but instructions for that are not provided. Included are simple examples and instructions developing with or without Docker are provided. I've also written a <a href="https://medium.freecodecamp.org/docker-development-workflow-a-guide-with-flask-and-postgres-db1a1843044a">blog post</a> about using Docker based on this repository.<br>
+This is an minimal but opinionated boilerplate meant for building out simple REST APIs. It is primarily used at [Hack4Impact UIUC](https://github.com/hack4impact-uiuc). This app is written in Python 3.6 with Postgres 10 as the chosen data persistence. The default way to deploy it is with Heroku or Zeit now but you can deploy it with another service, like AWS, Google Cloud, or DigitalOcean with Gunicorn and Nginx, but instructions for that are not provided. Included are simple examples and instructions developing with or without Docker are provided. I've also written a <a href="https://medium.freecodecamp.org/docker-development-workflow-a-guide-with-flask-and-postgres-db1a1843044a">blog post</a> about using Docker based on this repository.<br>
 
 Documentation is located [here](https://github.com/tko22/flask-boilerplate/wiki). We use [pipenv](https://docs.pipenv.org/#) for dependency management, [black](https://github.com/ambv/black) for code formatting, and [mypy](http://mypy-lang.org/) for optional static typing.
 
@@ -48,6 +48,18 @@ pg_url = postgresql://testusr:password@127.0.0.1:5432/testdb
 
 For production, you should do something similar with the flask `SECRET_KEY`.
 
+#### Deployment
+
+You may use Heroku and the instructions are defined in the [wiki page](https://github.com/tko22/flask-boilerplate/wiki). I prefer [Zeit now](https://zeit.co/now) for their easy docker serverless
+deployments. To deploy, you must have the now cli and then run:
+
+```
+now -e DATABASE_URL=your_postgres_url
+```
+
+Note that you will need a postgres instance somewhere. Remember to run `python manage.py recreate_db` to initialize all of the tables in the beginning! You may also use [now secrets](https://zeit.co/docs/getting-started/secrets) and put them
+into the the optional zeit now [config file](https://zeit.co/docs/static-deployments/configuration) `now.json`.
+
 ### Repository Contents
 
 - `api/views/` - Holds files that define your endpoints
@@ -55,6 +67,7 @@ For production, you should do something similar with the flask `SECRET_KEY`.
 - `api/__init__.py` - What is initially ran when you start your application
 - `api/utils.py` - utility functions and classes - explained [here](https://github.com/tko22/flask-boilerplate/wiki/Conventions)
 - `api/core.py` - includes core functionality including error handlers and logger
+- `api/wsgi.py` - app reference for gunicorn
 - `tests/` - Folder holding tests
 
 #### Others

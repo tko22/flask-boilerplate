@@ -3,3 +3,4 @@
 !manage.py
 !Pipfile
 !Pipfile.lock
+!creds.ini

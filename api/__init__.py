@@ -29,7 +29,6 @@ def create_app(test_config=None):
         app.config.from_mapping(**test_config)
     else:
         app.config.from_object(config[env])
-
     # logging
     formatter = RequestFormatter(
         "%(asctime)s %(remote_addr)s: requested %(url)s: %(levelname)s in [%(module)s: %(lineno)d]: %(message)s"
