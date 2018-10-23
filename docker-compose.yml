@@ -1,4 +1,4 @@
-version: '3.4'
+version: "3.7"
 services:
   postgres:
     container_name: postgres
@@ -15,7 +15,9 @@ services:
   app:
     container_name: app
     restart: always
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
     environment:
       - FLASK_ENV=docker
     ports:
@@ -24,7 +26,7 @@ services:
       - .:/app
     depends_on:
       - postgres
-    entrypoint: 
+    entrypoint:
       - /app/docker_script.sh
 
 volumes:

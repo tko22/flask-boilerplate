@@ -12,6 +12,7 @@ SQLAlchemy = "==1.1.14"
 Flask-Cors = "==3.0.6"
 sqlalchemy-utils = "==0.33.6"
 flask = "==1.0.2"
+"psycopg2" = "==2.7.5"
 
 [dev-packages]
 pylint="~=2.1.1"
