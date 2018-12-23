@@ -1,0 +1,4 @@
+pylint>=2.1.1
+black>=18.9b0
+mypy
+pytest>=3.7.1

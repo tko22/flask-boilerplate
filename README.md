@@ -2,7 +2,7 @@
 
 This is an minimal but opinionated boilerplate meant for building out simple REST APIs. It is primarily used at [Hack4Impact UIUC](https://github.com/hack4impact-uiuc). This app is written in Python 3.6 with Postgres 10 as the chosen data persistence. The default way to deploy it is with Heroku or Zeit now but you can deploy it with another service, like AWS, Google Cloud, or DigitalOcean with Gunicorn and Nginx, but instructions for that are not provided. Included are simple examples and instructions developing with or without Docker are provided. I've also written a <a href="https://medium.freecodecamp.org/docker-development-workflow-a-guide-with-flask-and-postgres-db1a1843044a">blog post</a> about using Docker based on this repository.<br>
 
-Documentation is located [here](https://github.com/tko22/flask-boilerplate/wiki). We use [pipenv](https://docs.pipenv.org/#) for dependency management, [black](https://github.com/ambv/black) for code formatting, and [mypy](http://mypy-lang.org/) for optional static typing.
+Documentation is located [here](https://github.com/tko22/flask-boilerplate/wiki). We use [black](https://github.com/ambv/black) for code formatting, and [mypy](http://mypy-lang.org/) for optional static typing.
 
 ![](../master/docs/flask.gif)
 
@@ -30,13 +30,25 @@ docker run -e POSTGRES_USER=testusr -e POSTGRES_PASSWORD=password -e POSTGRES_DB
 
 Another option is to create a postgres instance on a cloud service like elephantsql and connect it to this app. Remember to change the postgres url and don't hard code it in!
 
-Then, install the python dependencies and run the server:
+Then, start your virtual environment
 
 ```
-pipenv install
-pipenv install --dev
-pipenv run python manage.py recreate_db
-pipenv run python manage.py runserver
+$ pip3 install virtualenv
+$ virtualenv venv
+$ source venv/bin/activate
+```
+Now, install the python dependencies and run the server:
+```
+(venv) $ pip install -r requirements.txt
+(venv) $ pip install -r requirements-dev.txt
+(venv) $ python manage.py recreate_db
+(venv) $ python manage.py runserver
+```
+
+To exit the virtual environment:
+```
+(venv) $ deactivate
+$
 ```
 
 For ease of setup, I have hard-coded postgres URLs for development and docker configurations. If you are using a separate postgres instance as mentioned above, _do not hardcode_ the postgres url including the credentials to your code. Instead, create a file called `creds.ini` in the same directory level as `manage.py` and write something like this:

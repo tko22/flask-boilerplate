@@ -1,6 +1,5 @@
 *
 !api
 !manage.py
-!Pipfile
-!Pipfile.lock
+!requirements.txt
 !creds.ini

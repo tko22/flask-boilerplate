@@ -2,18 +2,17 @@
 FROM python:3.7-alpine
 LABEL maintainer "Timothy Ko <tk2@illinois.edu>"
 
-COPY Pipfile Pipfile.lock ./
+COPY requirements.txt requirements.txt
 RUN apk update && \
     apk add --virtual build-deps gcc musl-dev && \
     apk add postgresql-dev && \
     rm -rf /var/cache/apk/*
 
-RUN pip install pipenv
-RUN pipenv install --system
+RUN pip install -r requirements.txt
 
 # delete dependencies required to install certain python packages 
 # so the docker image size is low enough for Zeit now
-RUN apk del build-deps gcc musl-dev && pip uninstall -y pipenv
+RUN apk del build-deps gcc musl-dev
 
 COPY . /app
 WORKDIR /app

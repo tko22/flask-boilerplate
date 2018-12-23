@@ -4,8 +4,7 @@ LABEL maintainer "Timothy Ko <tk2@illinois.edu>"
 
 COPY . /app
 WORKDIR /app
-RUN pip install pipenv
-RUN pipenv install --system
+RUN pip install -r requirements.txt
 
 ENV FLASK_ENV=docker
 EXPOSE 5000
