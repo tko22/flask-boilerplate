@@ -11,7 +11,7 @@ brew link postgresql
 brew services start postgresql
 pip install virtualenv
 virtualenv flask-venv
-source /venv/bin/activate
+source /flask-venv/bin/activate
 pip install -r requirements.txt -r requirements-dev.txt
 
 # wait until postgres is started
