@@ -35,7 +35,6 @@ def client(postgres):
     app = create_app(config_dict)
     app.app_context().push()
 
-    # wait for sqlite file to be created
     time.sleep(2)
     from api.models import db
 

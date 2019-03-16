@@ -91,6 +91,6 @@ def get_pg_url(file: str = "creds.ini") -> str:
         return mongo_section["pg_url"]
     except KeyError:
         print(
-            f"Failed to retrieve postgres url. Check if {file} exists in the top directory and whether it follows the correct format. Ignore this message if you are not using creds.ini."
+            f"Failed to retrieve postgres url. Check if {file} exists in the top directory and whether it follows the correct format. INGORE this message if you are not using {file} to store your credentials."
         )
         return None
