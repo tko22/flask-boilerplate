@@ -33,6 +33,9 @@ compose_destroy:
 	docker-compose rm -f
 	docker volume rm flask-app-db
 
+make compose_start:
+	docker-compose start
+
 heroku_setup:
 	python manage.py recreate_db
 	

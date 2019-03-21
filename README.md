@@ -81,15 +81,7 @@ I would highly suggest reading the [documentation](https://github.com/tko22/flas
 
 #### Deployment
 
-You may use Heroku and the instructions are defined in the [wiki page](https://github.com/tko22/flask-boilerplate/wiki). I prefer [Zeit now](https://zeit.co/now) for their easy docker serverless
-deployments. To deploy, you must have the now cli and then run:
-
-```
-now -e DATABASE_URL=your_postgres_url
-```
-
-Note that you will need a postgres instance somewhere. Remember to run `python manage.py recreate_db` to initialize all of the tables in the beginning! You may also use [now secrets](https://zeit.co/docs/getting-started/secrets) and put them
-into the the optional zeit now [config file](https://zeit.co/docs/static-deployments/configuration) `now.json`.
+You may use Heroku or Zeit Now and the instructions are defined in the [wiki page](https://github.com/tko22/flask-boilerplate/wiki). I would recommend Heroku. The easiest way to do so is to click the Heroku Deploy button. Remember, once you fork/copy this repo, you will need to change `app.json`, especially the `repository` key. Everything else should be fine.
 
 ### Repository Contents
 
