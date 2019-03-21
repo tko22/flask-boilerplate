@@ -43,4 +43,3 @@ def client(postgres):
     # http://flask.pocoo.org/docs/1.0/api/#test-client
     client = app.test_client()
     yield client
-

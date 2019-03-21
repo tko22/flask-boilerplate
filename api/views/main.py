@@ -20,4 +20,3 @@ def index():
 def get_persons():
     persons = Person.query.all()
     return create_response(data={"persons": serialize_list(persons)})
-
