@@ -16,14 +16,14 @@ start_dev_db:
 	docker run -e POSTGRES_USER=testusr -e POSTGRES_PASSWORD=password -e POSTGRES_DB=testdb -p 5432:5432 -v flask-app-db:/var/lib/postgresql/data -d postgres:10
 
 recreate_db:
-	./docker_destory.sh
+	./scripts/docker_destroy.sh
 	start_dev_db
 	sleep 2
 	venv/bin/python manage.py recreate_db
 
 
 destroy:
-	./docker_destroy.sh
+	./scripts/docker_destroy.sh
 
 up: 
 	docker-compose up
