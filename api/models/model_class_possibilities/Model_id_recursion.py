@@ -7,11 +7,11 @@ class ModelSQL(object):
     query_class = None  # flask_alchemy attribute
     query = None  # flask_alchemy attribute
 
-    DONOTSEND_MODEL = {'_sa_instance_state'}
+    DONOTSEND_MODEL = {"_sa_instance_state"}
     DONOTSEND = []
 
     def __repr__(self) -> str:
-        return '<{}>'.format(self.__class__.__name__)
+        return "<{}>".format(self.__class__.__name__)
 
     def to_dict_recursive(self) -> dict:
         return self._to_dict_recursive(obj_ids_crossed=[id(self)])
@@ -26,6 +26,7 @@ class ModelSQL(object):
         check_crossed_obj -- Check if object has already been passed through
         type_shunt_recursive -- Select actions for each type of attr
         """
+
         def check_crossed_obj(obj: Type[ModelSQL]) -> any:
             if id(obj) in obj_ids_crossed:
                 return str(obj)
@@ -57,5 +58,6 @@ class ModelSQL(object):
             if key not in self.DONOTSEND:
                 attr = getattr(self, key)
                 result[key] = type_shunt_recursive(attr)
+
 
 return result
