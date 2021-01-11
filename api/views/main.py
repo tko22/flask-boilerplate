@@ -47,5 +47,5 @@ def create_person():
     db.session.add_all([new_person, email])
     db.session.commit()
     return create_response(
-        message=f"Successfully created person {new_person.name} with id: {new_person._id}"
+        message=f"Successfully created person {new_person.name} with id: {new_person.id}"
     )
